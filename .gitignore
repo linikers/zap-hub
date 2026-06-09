@@ -1,0 +1,9 @@
+node_modules/
+session/
+*.pid
+*.log
+*.png
+.env
+!drivers/**/.env.example
+__pycache__/
+*.pyc
