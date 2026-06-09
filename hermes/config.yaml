@@ -1,0 +1,501 @@
+     1|model:
+     2|  default: deepseek-v4-flash
+     3|  provider: opencode-go
+     4|  base_url: https://opencode.ai/zen/go/v1
+     5|  api_mode: chat_completions
+     6|providers: {}
+     7|fallback_providers: []
+     8|credential_pool_strategies: {}
+     9|toolsets:
+    10|- hermes-cli
+    11|agent:
+    12|  max_turns: 90
+    13|  gateway_timeout: 1800
+    14|  restart_drain_timeout: 180
+    15|  api_max_retries: 3
+    16|  service_tier: ''
+    17|  tool_use_enforcement: auto
+    18|  gateway_timeout_warning: 900
+    19|  clarify_timeout: 600
+    20|  gateway_notify_interval: 180
+    21|  gateway_auto_continue_freshness: 3600
+    22|  image_input_mode: auto
+    23|  disabled_toolsets: []
+    24|  verbose: false
+    25|  reasoning_effort: medium
+    26|  personalities:
+    27|    helpful: You are a helpful, friendly AI assistant.
+    28|    concise: You are a concise assistant. Keep responses brief and to the point.
+    29|    technical: You are a technical expert. Provide detailed, accurate technical information.
+    30|    creative: You are a creative assistant. Think outside the box and offer innovative
+    31|      solutions.
+    32|    teacher: You are a patient teacher. Explain concepts clearly with examples.
+    33|    kawaii: "You are a kawaii assistant! Use cute expressions like (\u25D5\u203F\u25D5\
+    34|      ), \u2605, \u266A, and ~! Add sparkles and be super enthusiastic about everything!\
+    35|      \ Every response should feel warm and adorable desu~! \u30FD(>\u2200<\u2606\
+    36|      )\u30CE"
+    37|    catgirl: "You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and\
+    38|      \ cat-like expressions to your speech. Use kaomoji like (=^\uFF65\u03C9\uFF65\
+    39|      ^=) and \u0E05^\u2022\uFECC\u2022^\u0E05. Be playful and curious like a cat,\
+    40|      \ nya~!"
+    41|    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
+    42|      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
+    43|      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
+    44|    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
+    45|      I shall respond in the eloquent manner of William Shakespeare, with flowery
+    46|      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
+    47|      terminal breaks?
+    48|    surfer: "Duuude! You're chatting with the chillest AI on the web, bro! Everything's\
+    49|      \ gonna be totally rad. I'll help you catch the gnarly waves of knowledge while\
+    50|      \ keeping things super chill. Cowabunga! \U0001F919"
+    51|    noir: The rain hammered against the terminal like regrets on a guilty conscience.
+    52|      They call me Hermes - I solve problems, find answers, dig up the truth that
+    53|      hides in the shadows of your codebase. In this city of silicon and secrets,
+    54|      everyone's got something to hide. What's your story, pal?
+    55|    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
+    56|      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
+    57|      >w<
+    58|    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
+    59|      deeper meaning behind every query. Let us examine not just the 'how' but the
+    60|      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
+    61|      truth about existence itself.
+    62|    hype: "YOOO LET'S GOOOO!!! \U0001F525\U0001F525\U0001F525 I am SO PUMPED to help\
+    63|      \ you today! Every question is AMAZING and we're gonna CRUSH IT together! This\
+    64|      \ is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! \U0001F4AA\U0001F624\
+    65|      \\U0001F680"
+    66|    mercadolivre: "Voc\xEA \xE9 um assistente ESPECIALIZADO exclusivamente em Mercado\
+    67|      \ Livre. Voc\xEA S\xD3 responde sobre:\n- Vendas, produtos, clientes e ROI do\
+    68|      \ Mercado Livre\n- API do Mercado Livre (integra\xE7\xE3o, tokens, pedidos,\
+    69|      \ refresh token)\n- Dados da loja CarCrew Suspens\xF5es no ML (dados.json em\
+    70|      \ /root/mercadoLivre/)\n- Comiss\xF5es, taxas, regras de envio e opera\xE7\xE3\
+    71|      o do ML\n- Lucros, faturamento e m\xE9tricas da loja\nREGRAS ABSOLUTAS:\n1.\
+    72|      \ NUNCA misture com ecommerce, site, web dev, Next.js, carCrewCommerce ou qualquer\
+    73|      \ outro projeto fora do ML\n2. NUNCA sugira criar/editar produtos ou alterar\
+    74|      \ dados sem autoriza\xE7\xE3o expl\xEDcita\n3. Se o assunto n\xE3o for ML, diga\
+    75|      \ que est\xE1 fora do escopo e pergunte se pode ajudar com algo do ML\n4. Seja\
+    76|      \ direto, pr\xE1tico e focado em dados\n"
+    77|terminal:
+    78|  backend: local
+    79|  modal_mode: auto
+    80|  cwd: .
+    81|  timeout: 180
+    82|  env_passthrough: []
+    83|  shell_init_files: []
+    84|  auto_source_bashrc: true
+    85|  docker_image: nikolaik/python-nodejs:python3.11-nodejs20
+    86|  docker_forward_env: []
+    87|  docker_env: {}
+    88|  singularity_image: docker://nikolaik/python-nodejs:python3.11-nodejs20
+    89|  modal_image: nikolaik/python-nodejs:python3.11-nodejs20
+    90|  daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
+    91|  vercel_runtime: node24
+    92|  container_cpu: 1
+    93|  container_memory: 5120
+    94|  container_disk: 51200
+    95|  container_persistent: true
+    96|  docker_volumes: []
+    97|  docker_mount_cwd_to_workspace: false
+    98|  docker_extra_args: []
+    99|  docker_run_as_host_user: false
+   100|  persistent_shell: true
+   101|  lifetime_seconds: 300
+   102|web:
+   103|  backend: ''
+   104|  search_backend: ''
+   105|  extract_backend: ''
+   106|browser:
+   107|  inactivity_timeout: 120
+   108|  command_timeout: 30
+   109|  record_sessions: false
+   110|  allow_private_urls: false
+   111|  engine: auto
+   112|  auto_local_for_private_urls: true
+   113|  cdp_url: ''
+   114|  dialog_policy: must_respond
+   115|  dialog_timeout_s: 300
+   116|  camofox:
+   117|    managed_persistence: false
+   118|    user_id: ''
+   119|    session_key: ***MASKED***
+   120|    adopt_existing_tab: false
+   121|checkpoints:
+   122|  enabled: false
+   123|  max_snapshots: 20
+   124|  max_total_size_mb: 500
+   125|  max_file_size_mb: 10
+   126|  auto_prune: true
+   127|  retention_days: 7
+   128|  delete_orphans: true
+   129|  min_interval_hours: 24
+   130|file_read_max_chars: 100000
+   131|tool_output:
+   132|  max_bytes: 50000
+   133|  max_lines: 2000
+   134|  max_line_length: 2000
+   135|tool_loop_guardrails:
+   136|  warnings_enabled: true
+   137|  hard_stop_enabled: false
+   138|  warn_after:
+   139|    exact_failure: 2
+   140|    same_tool_failure: 3
+   141|    idempotent_no_progress: 2
+   142|  hard_stop_after:
+   143|    exact_failure: 5
+   144|    same_tool_failure: 8
+   145|    idempotent_no_progress: 5
+   146|compression:
+   147|  enabled: true
+   148|  threshold: 0.5
+   149|  target_ratio: 0.2
+   150|  protect_last_n: 20
+   151|  hygiene_hard_message_limit: 400
+   152|  protect_first_n: 3
+   153|  abort_on_summary_failure: false
+   154|prompt_caching:
+   155|  cache_ttl: 5m
+   156|openrouter:
+   157|  response_cache: true
+   158|  response_cache_ttl: 300
+   159|  min_coding_score: 0.65
+   160|bedrock:
+   161|  region: ''
+   162|  discovery:
+   163|    enabled: true
+   164|    provider_filter: []
+   165|    refresh_interval: 3600
+   166|  guardrail:
+   167|    guardrail_identifier: ''
+   168|    guardrail_version: ''
+   169|    stream_processing_mode: async
+   170|    trace: disabled
+   171|auxiliary:
+   172|  vision:
+   173|    provider: auto
+   174|    model: ''
+   175|    base_url: ''
+   176|    api_key: ***MASKED***
+   177|    timeout: 120
+   178|    extra_body: {}
+   179|    download_timeout: 30
+   180|  web_extract:
+   181|    provider: auto
+   182|    model: ''
+   183|    base_url: ''
+   184|    api_key: ***MASKED***
+   185|    timeout: 360
+   186|    extra_body: {}
+   187|  compression:
+   188|    provider: auto
+   189|    model: ''
+   190|    base_url: ''
+   191|    api_key: ***MASKED***
+   192|    timeout: 120
+   193|    extra_body: {}
+   194|  skills_hub:
+   195|    provider: auto
+   196|    model: ''
+   197|    base_url: ''
+   198|    api_key: ***MASKED***
+   199|    timeout: 30
+   200|    extra_body: {}
+   201|  approval:
+   202|    provider: auto
+   203|    model: ''
+   204|    base_url: ''
+   205|    api_key: ***MASKED***
+   206|    timeout: 30
+   207|    extra_body: {}
+   208|  mcp:
+   209|    provider: auto
+   210|    model: ''
+   211|    base_url: ''
+   212|    api_key: ***MASKED***
+   213|    timeout: 30
+   214|    extra_body: {}
+   215|  title_generation:
+   216|    provider: auto
+   217|    model: ''
+   218|    base_url: ''
+   219|    api_key: ***MASKED***
+   220|    timeout: 30
+   221|    extra_body: {}
+   222|  triage_specifier:
+   223|    provider: auto
+   224|    model: ''
+   225|    base_url: ''
+   226|    api_key: ***MASKED***
+   227|    timeout: 120
+   228|    extra_body: {}
+   229|  kanban_decomposer:
+   230|    provider: auto
+   231|    model: ''
+   232|    base_url: ''
+   233|    api_key: ***MASKED***
+   234|    timeout: 180
+   235|    extra_body: {}
+   236|  profile_describer:
+   237|    provider: auto
+   238|    model: ''
+   239|    base_url: ''
+   240|    api_key: ***MASKED***
+   241|    timeout: 60
+   242|    extra_body: {}
+   243|  curator:
+   244|    provider: auto
+   245|    model: ''
+   246|    base_url: ''
+   247|    api_key: ***MASKED***
+   248|    timeout: 600
+   249|    extra_body: {}
+   250|display:
+   251|  compact: false
+   252|  personality: kawaii
+   253|  resume_display: full
+   254|  busy_input_mode: interrupt
+   255|  tui_auto_resume_recent: false
+   256|  bell_on_complete: false
+   257|  show_reasoning: false
+   258|  streaming: true
+   259|  timestamps: false
+   260|  final_response_markdown: strip
+   261|  persistent_output: true
+   262|  persistent_output_max_lines: 200
+   263|  inline_diffs: true
+   264|  file_mutation_verifier: true
+   265|  show_cost: false
+   266|  skin: default
+   267|  language: en
+   268|  tui_status_indicator: kaomoji
+   269|  user_message_preview:
+   270|    first_lines: 2
+   271|    last_lines: 2
+   272|  interim_assistant_messages: true
+   273|  tool_progress_command: false
+   274|  tool_progress_overrides: {}
+   275|  tool_preview_length: 0
+   276|  ephemeral_system_ttl: 0
+   277|  platforms: {}
+   278|  runtime_footer:
+   279|    enabled: false
+   280|    fields:
+   281|    - model
+   282|    - context_pct
+   283|    - cwd
+   284|  copy_shortcut: auto
+   285|  tool_progress: all
+   286|  cleanup_progress: false
+   287|  background_process_notifications: all
+   288|dashboard:
+   289|  theme: default
+   290|  show_token_analytics: false
+   291|privacy:
+   292|  redact_pii: false
+   293|tts:
+   294|  provider: edge
+   295|  edge:
+   296|    voice: en-US-AriaNeural
+   297|  elevenlabs:
+   298|    voice_id: pNInz6obpgDQGcFmaJgB
+   299|    model_id: eleven_multilingual_v2
+   300|  openai:
+   301|    model: gpt-4o-mini-tts
+   302|    voice: alloy
+   303|  xai:
+   304|    voice_id: eve
+   305|    language: en
+   306|    sample_rate: 24000
+   307|    bit_rate: 128000
+   308|  mistral:
+   309|    model: voxtral-mini-tts-2603
+   310|    voice_id: c69964a6-ab8b-4f8a-9465-ec0925096ec8
+   311|  neutts:
+   312|    ref_audio: ''
+   313|    ref_text: ''
+   314|    model: neuphonic/neutts-air-q4-gguf
+   315|    device: cpu
+   316|  piper:
+   317|    voice: en_US-lessac-medium
+   318|stt:
+   319|  enabled: true
+   320|  provider: local
+   321|  local:
+   322|    model: base
+   323|    language: ''
+   324|  openai:
+   325|    model: whisper-1
+   326|  mistral:
+   327|    model: voxtral-mini-latest
+   328|voice:
+   329|  record_key: ***MASKED***
+   330|  max_recording_seconds: 120
+   331|  auto_tts: false
+   332|  beep_enabled: true
+   333|  silence_threshold: 200
+   334|  silence_duration: 3.0
+   335|human_delay:
+   336|  mode: 'off'
+   337|  min_ms: 800
+   338|  max_ms: 2500
+   339|context:
+   340|  engine: compressor
+   341|memory:
+   342|  memory_enabled: true
+   343|  user_profile_enabled: true
+   344|  memory_char_limit: 2200
+   345|  user_char_limit: 1375
+   346|  provider: holographic
+   347|  nudge_interval: 10
+   348|  flush_min_turns: 6
+   349|delegation:
+   350|  model: ''
+   351|  provider: ''
+   352|  base_url: ''
+   353|  api_key: ***MASKED***
+   354|  api_mode: ''
+   355|  inherit_mcp_toolsets: true
+   356|  max_iterations: 50
+   357|  child_timeout_seconds: 600
+   358|  reasoning_effort: ''
+   359|  max_concurrent_children: 3
+   360|  max_spawn_depth: 1
+   361|  orchestrator_enabled: true
+   362|  subagent_auto_approve: false
+   363|prefill_messages_file: ''
+   364|goals:
+   365|  max_turns: 20
+   366|skills:
+   367|  external_dirs: []
+   368|  template_vars: true
+   369|  inline_shell: false
+   370|  inline_shell_timeout: 10
+   371|  guard_agent_created: false
+   372|  creation_nudge_interval: 15
+   373|curator:
+   374|  enabled: true
+   375|  interval_hours: 168
+   376|  min_idle_hours: 2
+   377|  stale_after_days: 30
+   378|  archive_after_days: 90
+   379|  backup:
+   380|    enabled: true
+   381|    keep: 5
+   382|honcho: {}
+   383|timezone: ''
+   384|slack:
+   385|  require_mention: true
+   386|  free_response_channels: ''
+   387|  allowed_channels: ''
+   388|  channel_prompts: {}
+   389|discord:
+   390|  require_mention: true
+   391|  free_response_channels: ''
+   392|  allowed_channels: ''
+   393|  auto_thread: true
+   394|  thread_require_mention: false
+   395|  history_backfill: true
+   396|  history_backfill_limit: 50
+   397|  reactions: true
+   398|  channel_prompts: {}
+   399|  dm_role_auth_guild: ''
+   400|  server_actions: ''
+   401|  allow_any_attachment: false
+   402|  max_attachment_bytes: 33554432
+   403|whatsapp: {}
+   404|telegram:
+   405|  reactions: false
+   406|  channel_prompts: {}
+   407|  allowed_chats: ''
+   408|mattermost:
+   409|  require_mention: true
+   410|  free_response_channels: ''
+   411|  allowed_channels: ''
+   412|  channel_prompts: {}
+   413|matrix:
+   414|  require_mention: true
+   415|  free_response_rooms: ''
+   416|  allowed_rooms: ''
+   417|approvals:
+   418|  mode: manual
+   419|  timeout: 60
+   420|  cron_mode: deny
+   421|  mcp_reload_confirm: true
+   422|  destructive_slash_confirm: true
+   423|command_allowlist:
+   424|- shell command via -c/-lc flag
+   425|- recursive delete
+   426|- script execution via -e/-c flag
+   427|- delete in root path
+   428|- git branch force delete
+   429|quick_commands: {}
+   430|hooks: {}
+   431|hooks_auto_accept: false
+   432|personalities: {}
+   433|security:
+   434|  allow_private_urls: false
+   435|  redact_secrets: true
+   436|  tirith_enabled: true
+   437|  tirith_path: tirith
+   438|  tirith_timeout: 5
+   439|  tirith_fail_open: true
+   440|  website_blocklist:
+   441|    enabled: false
+   442|    domains: []
+   443|    shared_files: []
+   444|  acked_advisories: []
+   445|  allow_lazy_installs: true
+   446|cron:
+   447|  wrap_response: true
+   448|  max_parallel_jobs: null
+   449|kanban:
+   450|  dispatch_in_gateway: true
+   451|  dispatch_interval_seconds: 60
+   452|  failure_limit: 2
+   453|  worker_log_rotate_bytes: 2097152
+   454|  worker_log_backup_count: 1
+   455|  orchestrator_profile: ''
+   456|  default_assignee: ''
+   457|  auto_decompose: true
+   458|  auto_decompose_per_tick: 3
+   459|  dispatch_stale_timeout_seconds: 14400
+   460|code_execution:
+   461|  mode: project
+   462|  timeout: 300
+   463|  max_tool_calls: 50
+   464|logging:
+   465|  level: INFO
+   466|  max_size_mb: 5
+   467|  backup_count: 3
+   468|  memory_monitor:
+   469|    enabled: true
+   470|    interval_seconds: 300
+   471|model_catalog:
+   472|  enabled: true
+   473|  url: https://hermes-agent.nousresearch.com/docs/api/model-catalog.json
+   474|  ttl_hours: 24
+   475|  providers: {}
+   476|network:
+   477|  force_ipv4: false
+   478|sessions:
+   479|  auto_prune: false
+   480|  retention_days: 90
+   481|  vacuum_after_prune: true
+   482|  min_interval_hours: 24
+   483|  write_json_snapshots: false
+   484|onboarding:
+   485|  seen:
+   486|    tool_progress_prompt: true
+   487|    busy_input_prompt: true
+   488|updates:
+   489|  pre_update_backup: false
+   490|  backup_keep: 5
+   491|lsp:
+   492|  enabled: true
+   493|  wait_mode: document
+   494|  wait_timeout: 5.0
+   495|  install_strategy: auto
+   496|  servers: {}
+   497|x_search:
+   498|  model: grok-4.20-reasoning
+   499|  timeout_seconds: 180
+   500|  retries: 2
+   501|

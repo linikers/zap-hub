@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp QR Code - Hermes</title>
+<style>
+  body { 
+    background: #1a1a2e; 
+    color: #fff; 
+    font-family: system-ui, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    margin: 0;
+    text-align: center;
+  }
+  h1 { margin-bottom: 5px; }
+  p { color: #aaa; margin-bottom: 20px; }
+  .steps { text-align: left; background: #16213e; padding: 20px; border-radius: 12px; margin: 20px; }
+  .steps li { margin: 8px 0; }
+  .status { color: #4ade80; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <h1>📱 WhatsApp QR Code</h1>
+  <p>Escaneie com seu WhatsApp para conectar ao Hermes</p>
+  
+  <div id="qrcode"></div>
+  <p class="status" id="status">Aguardando escaneamento...</p>
+
+  <div class="steps">
+    <strong>Passos:</strong>
+    <ol>
+      <li>Abra o WhatsApp no seu celular</li>
+      <li>Vá em <strong>Configurações → Dispositivos Conectados</strong></li>
+      <li>Toque em <strong>Conectar um Dispositivo</strong></li>
+      <li>Aponte a câmera para o QR Code acima</li>
+    </ol>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    // Generate QR code on page load
+    new QRCode(document.getElementById("qrcode"), {
+      text: "whatsapp-bridge-hermes",
+      width: 280,
+      height: 280,
+      colorDark: "#ffffff",
+      colorLight: "#1a1a2e",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+  {"fact_id": 1, "content": "User é brasileiro, prefere comunicação informal em português: \"meu consagrado\", \"chefia\", \"pow\", \"meu menino\"", "category": "user_pref", "tags": "language,style"},
+  {"fact_id": 2, "content": "Dono da CarCrew Suspensões e do projeto Rocketstar (votação tatuagem Otttakucon)", "category": "user_pref", "tags": "business,projects"},
+  {"fact_id": 3, "content": "É seller do Mercado Livre (seller_id 50816240), ML API real funcionando com refresh token", "category": "general", "tags": "mercadolivre,business"},
+  {"fact_id": 4, "content": "Prefere solução mais simples, odeia over-engineering. Ação direta > criar UI/botão.", "category": "user_pref", "tags": "coding,philosophy"},
+  {"fact_id": 5, "content": "Alcides é o dono da CarCrew Suspensões (WhatsApp 554498133182), trabalha presencialmente com o user. Só consulta no sistema ML, exceção se ele disser que alterou no app/painel.", "category": "general", "tags": "alcides,carcrew,mercadolivre"},
+  {"fact_id": 6, "content": "Desenvolve com Next.js + PWA, MUI, estrutura src/. PRs por tópico (pr-N-nome), auto-contido. Revisa antes de commitar/mergear.", "category": "user_pref", "tags": "coding,workflow,stack"},
+  {"fact_id": 7, "content": "WhatsApp Baileys em modo self-chat (5544991528386) com allowlist. Bridge HTTP em localhost:3000 (POST /send).", "category": "general", "tags": "whatsapp,infra"},
+  {"fact_id": 8, "content": "Desenvolvimento em Windows. Imagens usam Cloudinary crop:pad + CSS contain. PR manual pelo GitHub Web UI.", "category": "user_pref", "tags": "workflow,dev-env"},
+  {"fact_id": 9, "content": "Projeto ERC20 Token Lab (erc20TokenLab) - deploy Vercel em ecr20ttk.vercel.app. Curso R$19, PagBank checkout sem permissão de venda, Pix estático integrado.", "category": "general", "tags": "erc20tokenlab,project"},
+  {"fact_id": 10, "content": "Quando o usuário diz \"calma para\" ou \"porra\" — parar e escutar, não insistir.", "category": "user_pref", "tags": "communication,behavior"}
+]

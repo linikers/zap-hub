@@ -7,3 +7,8 @@ session/
 !drivers/**/.env.example
 __pycache__/
 *.pyc
+sessions.db
+hermes/scripts/*.env
+hermes/scripts/*.log
+hermes/scripts/*.png
+hermes/scripts/*.bak
