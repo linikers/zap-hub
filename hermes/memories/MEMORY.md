@@ -12,4 +12,4 @@ autohedge-bot (linikers/autohedge-bot): publicado no GitHub. Pipeline Director�
 §
 xurl OAuth @hermesBigAgent ativo mas postar requer creditos X API (CreditsDepleted). Skills criadas/atualizadas: twitter-algorithm-optimizer, content-research-writer, brazilian-payment-gateways (v1.1.0). PagBank: app ttktoken integration key nao funciona (41001 OAuth, 401 XML). Pendente: ativar Checkout Transparente ou criar novo app.
 §
-zap-hub (github.com/linikers/zap-hub): repo centralizado de conexoes WhatsApp. Estrutura: drivers/ (cloud-api = simples, baileys = QR Code complexo), bots/ (nfe, ml-atendente, pessoal). NF-e usa Baileys QR (porta 3003). ML Atendente + pessoal usam Cloud API (mais simples, recomendar sempre).
+zap-hub (github.com/linikers/zap-hub): repo centralizado de conexoes WhatsApp + backup do Hermes. Estrutura: drivers/ (cloud-api = simples, baileys = QR Code complexo), bots/ (nfe-baileys, ml-atendente-cloud, pessoal-cloud), hermes/ (backup automatico todo 8h com skills, memorias, crons, facts). NF-e usa Baileys QR (porta 3003). ML Atendente + pessoal usam Cloud API (mais simples, recomendar sempre). Cron de backup 4df8558181f2.
