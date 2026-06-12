@@ -14,4 +14,6 @@ Portfolio (linikers/portfolio, deploy linikers-portfolio.vercel.app): Pages Rout
 §
 zap-hub (linikers/zap-hub): repo de conexoes WhatsApp + backup do Hermes. drivers/ (cloud-api=simples, baileys=QR complexo), bots/ (nfe-baileys, ml-atendente-cloud), hermes/ (backup diario 8h com skills, memorias, crons, facts). Cron backup: 4df8558181f2.
 §
-Taiff Connect (github.com/SistemasTaiffProart/taiff-connect-backend): Node + Express 5 + TypeORM + PostgreSQL. Twilio Verify OTP implementado e na main (PR#23 mergeado, build passando). Erro comum: import dinamico do `twilio` SDK v5 precisa de `.default()` (TwilioProvider.ts e TwilioVerifyProvider.ts). Dependencia adicionada no yarn.lock (nao esquecer de rodar yarn install ao adicionar novas deps).
+Taiff Connect (SistemasTaiffProart/taiff-connect-backend): Node + Express 5 + TypeORM + PostgreSQL + RabbitMQ. RabbitMQ: rabbitmq-dev.taiff-connect.com.br (api-taiff), svc.cluster.local em K8s. Queue-debug em /ready/queue-debug. API: api.taiff-connect.com.br. Frontend: taiff-connect-frontend (Vite React). Login social Firebase implementado (PR merged). RabbitMQ conectado e funcional.
+§
+Nunca fazer force push sem perguntar antes. A branch pode já ter sido mergeada e force push quebra o histórico do merge. Sempre verificar e perguntar antes.
