@@ -484,12 +484,13 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
-- script execution via -e/-c flag
-- recursive delete
 - overwrite project env/config file
-- git branch force delete
 - delete in root path
+- copy/move file into system config path
+- git branch force delete
+- recursive delete
 - shell command via -c/-lc flag
+- script execution via -e/-c flag
 - execute_code
 quick_commands: {}
 hooks: {}
