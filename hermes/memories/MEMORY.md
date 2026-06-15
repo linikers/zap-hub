@@ -13,3 +13,5 @@ Nunca fazer force push sem perguntar antes. A branch pode já ter sido mergeada 
 CarCrewCommerce (carcrew.com.br) — Next.js + Prisma + PostgreSQL (Vercel). `produtos.json` é fonte de dados mas site/admin lê do banco. Sincronizar: push main → Vercel build roda `prisma generate && npx prisma db seed && next build` com tsx. Cloudinary drvnlgib2/preset carcrew. Google Drive com pastas por produto (fotos + .txt). Fluxo: baixar drive → Cloudinary → update JSON → git push → deploy automático.
 §
 Skill "pit-investimento" (business/) criada — PIT financeiro padronizado com custos por aluno, projeção 3 anos, valuation. Primeiro uso: gSimulados (10k alunos).
+§
+Taiff Connect backend (Express 5): req.params returns string | string[], not string. Destructuring const { id } = req.params infers string[] breaking tsc. Must always cast: const id = req.params.id as string. Pattern used across product-image, product-warranty, metadata, admin controllers.
