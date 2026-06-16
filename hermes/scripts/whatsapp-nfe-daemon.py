@@ -71,7 +71,7 @@ async def send_whatsapp(to: str, text: str) -> bool:
 def poll_messages():
     """Polla /messages da bridge."""
     try:
-        req = urllib.request.Request(f"{BRIDGE_URL}/messages?timeout=20")
+        req = urllib.request.Request(f"{BRIDGE_URL}/messages")
         resp = urllib.request.urlopen(req, timeout=30)
         data = json.loads(resp.read().decode("utf-8"))
         return data if isinstance(data, list) else []
