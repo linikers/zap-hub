@@ -8,10 +8,10 @@ OBSIDIAN_VAULT_PATH=/root/hermesCabeca — vault do Obsidian chamado "hermesCabe
 §
 Taiff backend: rotas novas = NUNCA quebrar existentes. Campos novos = opcional no Yup. Swagger completo /api-docs. Upload: multer + emptyDir (gp2 funciona, ebs-sc causa timeout). Forgot senha: SMS pronto (Twilio), email pendente.
 §
-NUNCA modificar rotas existentes que o front possa consumir. Preferir rotas NOVAS. Se precisar mudar schema/resposta, tornar campos opcionais (Yup) pra não quebrar front. Sempre analisar impacto antes de implementar.
+Taiff: NUNCA quebrar rotas existentes do front. Campos novos = opcional no Yup. Sempre analisar impacto antes.
 §
-NF-e novo número: 44 9 9127-7833. Bridge separado na porta 3003 em modo bot com allowed users. Daemon NF-e rodando apontando pra porta 3003.
+AutoHedge bot: Pipeline 4-agentes (Director→Quant→Risk→Execution). 23 fontes de dados reais: preços SOL/BTC/ETH, TVL (DefiLlama), Fear&Greed, RSI/MACD/Bollinger/EMA/ATR/SR/Fib, notícias RSS (CoinTelegraph+Decrypt). P&L vs preço depósito. Dashboard: port 9120 + /tradeSol. Trades bidirecionais. Cron: análise 6h, MA Bounce 1h. Skill: autohedge-bot-management.
 §
-AutoHedge meta: $5 USD lucro. MA Bounce cíclica (compra+venda), $0.50/trade. Depósitos: 0.0374 SOL (2x). Dashboard lê index.json dinamicamente. X sem crédito.
+WhatsApp routing: bridge 3000 (principal, 5544991528386) = geral/ML/ecommerce. Bridge 3003 (NF-e, 554491277833) = SOMENTE NF-e. NUNCA cross-bridge. Envio: python3 /root/whatsapp-send/send-validated.py. Routing: /root/whatsapp-routing.json.
 §
-Taiff branches: 1º firmware-update-ota (#58), 2º connect-device-flow (#59), 3º auth-registration. Upload: emptyDir padrão, PVC opcional com gp2 (ebs-sc causa timeout). Forgot senha: SMS pronto, email pendente. PRs #58/#59/#68 aguardam merge.
+PixelRAG instalado em /opt/pixelrag. Cmd: /opt/pixelrag/bin/pixelshot [URL] --output [DIR]. Renderiza web pages como screenshots tiles JPEG. Chrome headless em ~/.cache/pixelrag/chrome/. Útil pra ler gráficos de mercado como imagem.

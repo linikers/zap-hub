@@ -1,6 +1,6 @@
-Dono Car Crew Garage, dev full-stack. Windows/PowerShell, sem kubectl (só Helm). Prefere português informal, ação direta. Preferir criar NOVAS rotas — NÃO modificar existentes sem análise de impacto. Campos novos em schema: opcionais (backward compat). Issues só pra histórias NÃO implementadas. PR auto-suficiente com body. Migration em PR separado. Frustra com esforço desperdiçado.
+Dono Car Crew Garage, dev full-stack. Windows/PowerShell, sem kubectl. Português informal, ação direta. NOVAS rotas > modificar existentes. Campos opcionais. Issues só pra não implementadas. PR auto-suficiente. Migration em PR separado. Investigar antes de agir.
 §
-Windows/PowerShell + MINGW64 — curl alias Invoke-WebRequest, usar curl.exe. Cluster EKS sem kubectl. Projetos em C:/repositorios/. Prefere português informal, ação direta.
+Windows/PowerShell + MINGW64 — curl.exe. Cluster EKS sem kubectl. Projetos em C:/repositorios/.
 §
 Prefere arquitetura Hermes client-server: engine no VPS, Desktop no PC local conectando via dashboard remoto (Settings → Gateway → Remote gateway). Não quer instâncias separadas nem só SSH.
 §
