@@ -498,17 +498,18 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
+- shell command via -c/-lc flag
+- git force push (rewrites remote history)
 - git branch force delete
 - delete in root path
-- git force push (rewrites remote history)
-- shell command via -c/-lc flag
-- recursive delete
-- overwrite system file via redirection
-- overwrite project env/config file
-- script execution via heredoc
-- script execution via -e/-c flag
-- execute_code
 - kill process via pgrep expansion (self-termination)
+- overwrite system file via redirection
+- script execution via -e/-c flag
+- recursive delete
+- overwrite project env/config file
+- docker compose restart/stop/kill/down (container lifecycle)
+- execute_code
+- script execution via heredoc
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
