@@ -11,3 +11,5 @@ WhatsApp routing: bridge 3000 (principal, 5544991528386) = geral/ML/ecommerce. B
 nfe-brasil: /opt/nfe-brasil. Docker compose: postgres:5433, redis:6380, evo:8085, mcp:8090, bot:3010. API key: nfe-brasil-2026. Whitelist: WHATSAPP_ALLOWED_USERS no compose. NUNCA sed dentro de container — sempre rebuild compose.
 §
 Taiff domínios: taiff-connect.com.br (SendGrid DKIM verificado), taiff.com.br (não verificado). Front usa client ID Firebase 185745854158-fkc2f... Pra email, melhor usar noreply@taiff-connect.com.br enquanto padronizam. SendGrid trial termina 03/ago/2026.
+§
+AutoHedge: depósitos $12.40 total (4). Último: 7.81 USDC via Binance 25/06/2026. Resgate: private key importa em Phantom/Solflare. Fear & Greed: 12 (Extreme Fear).
