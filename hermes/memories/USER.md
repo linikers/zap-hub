@@ -1,4 +1,4 @@
-Dono Car Crew Garage, dev full-stack. Windows/PowerShell, sem kubectl. Português informal, ação direta. NOVAS rotas > modificar existentes. Campos opcionais. Issues só pra não implementadas. PR auto-suficiente. Migration em PR separado. Investigar antes de agir.
+Liniker, dono Car Crew Garage, dev full-stack. Windows/PowerShell, sem kubectl. Português informal, ação direta. NOVAS rotas > modificar existentes. Campos opcionais. Issues pra features novas. PR auto-suficiente. Migration em PR separado. Investigar antes de agir. Projetos em C:/repositorios/. Taiff Connect: Google OAuth (não Firebase). Quer PRs ordenados antes de merge. Testa API via curl.
 §
 Windows/PowerShell + MINGW64 — curl.exe. Cluster EKS sem kubectl. Projetos em C:/repositorios/.
 §
