@@ -1,4 +1,4 @@
-Liniker, dono Car Crew Garage, dev full-stack. Windows/PowerShell, sem kubectl. Português informal, ação direta. NOVAS rotas > modificar existentes. Campos opcionais. Issues pra features novas. PR auto-suficiente. Migration em PR separado. Investigar antes de agir. Projetos em C:/repositorios/. Taiff Connect: Google OAuth (não Firebase). Quer PRs ordenados antes de merge. Testa API via curl.
+Liniker: dev full-stack Car Crew Garage. Windows/PowerShell. Português informal, ação direta. Issues pra features. PR imediato. Investigar antes de agir. Cobra decisões corretas — verificar ONDE frontend lê ANTES de alterar dados. Não misturar atividades. Prefere PostgreSQL como fonte única (não JSON). Respostas diretas, listas formatadas.
 §
 Prefere arquitetura Hermes client-server: engine no VPS, Desktop no PC local conectando via dashboard remoto (Settings → Gateway → Remote gateway). Não quer instâncias separadas nem só SSH.
 §
@@ -10,4 +10,4 @@ X (@hermesBigAgent): OAuth2 configurado mas sem crédito na API pra postar/ler. 
 §
 Não quer systemd. Prefere scripts bash ou background procs do Hermes pra persistência de serviços.
 §
-Liniker prefere: analisar todas issues antes de implementar. NÃO misturar atividades. PR imediato após push. Respostas diretas, listas formatadas pra aprovação.
+Liniker: prefere ação direta, português informal. Não gosta de confirmações longas — quer ver resultado. Quando erra algo (ex: dizer "não tem X" e ele provar que tem), reconhecer rápido e corrigir. Prefere self-service (cria branch, merge PR, etc).

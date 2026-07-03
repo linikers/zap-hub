@@ -216,3 +216,41 @@ P1 🟠 High priority — visual inconsistency, UX friction
 P2 🟡 Medium — polish, nice-to-have improvements
 design 🎨 Design system, UI visual identity
 ```
+
+### CSS Pitfalls (MUI + Flexbox)
+
+These patterns cause silent breakage that passes build but clips/breaks visually:
+
+**`overflowX: "auto"` + `justifyContent: "center"` — content clipped on left**
+
+When a flex container has both `overflowX: "auto"` and `justifyContent: "center"`, centered content that overflows gets clipped on the LEFT side because the scrollable area starts from the center, not from the left edge. The first items become hidden and unreachable.
+
+❌ **Wrong:**
+```jsx
+<Box sx={{ display: "flex", justifyContent: "center", overflowX: "auto" }}>
+  {items}
+</Box>
+```
+
+✅ **Correct — two approaches:**
+```jsx
+// Approach A: Flat flex, no center — items start from left, WhatsApp on right
+<Box sx={{ display: "flex", alignItems: "center" }}>
+  <Box sx={{ flex: 1, display: "flex", justifyContent: "center", gap: 0 }}>
+    {items}
+  </Box>
+  <Button sx={{ flexShrink: 0 }}>WhatsApp</Button>
+</Box>
+
+// Approach B: Absolute right element, centered content with overflow: hidden
+<Box sx={{ display: "flex", alignItems: "center", position: "relative" }}>
+  <Box sx={{ flex: 1, display: "flex", justifyContent: "center", overflow: "hidden" }}>
+    {items}
+  </Box>
+  <Button sx={{ position: "absolute", right: 0 }}>WhatsApp</Button>
+</Box>
+```
+
+**`pr: { md: 22 }` hardcoded padding — clips at certain breakpoints**
+
+Never use arbitrary hardcoded padding values (like `pr: 22`) to "make room" for a fixed element. Use flex layout (`flexShrink: 0`, `flex: 1`, `position: absolute`) instead. Hardcoded padding that works on one screen size will break on others.

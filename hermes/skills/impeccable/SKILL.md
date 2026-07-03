@@ -115,6 +115,52 @@ If someone could look at this interface and say "AI made that" without doubt, it
 - **First-order:** if someone could guess the theme + palette from the category alone ("observability → dark blue", "healthcare → white + teal", "finance → navy + gold", "crypto → neon on black"), it's the first training-data reflex. Rework the scene sentence and color strategy until the answer isn't obvious from the domain.
 - **Second-order:** if someone could guess the aesthetic family from category-plus-anti-references ("AI workflow tool that's not SaaS-cream → editorial-typographic", "fintech that's not navy-and-gold → terminal-native dark mode"), it's the trap one tier deeper. The first reflex was avoided; the second wasn't. Rework until both answers are not obvious. The brand register's [reflex-reject aesthetic lanes](reference/brand.md) list catches the currently-saturated families.
 
+### Fixing Existing Components — Surgical Only
+
+When fixing layout/CSS bugs in an existing component, the user expects MINIMAL
+targeted changes. The #1 failure mode is breaking working behavior while fixing
+the reported issue.
+
+**Pitfall: Rewriting fixes nothing.** If you restructure the JSX to "clean it
+up", you will break something that was working. The user WILL notice and will
+lose trust. Every rewrite attempt that breaks working behavior is worse than
+the original bug.
+
+**Mandatory process:**
+1. Read the ENTIRE component before changing anything
+2. Identify the exact lines causing the reported issue
+3. Change ONLY those lines — CSS values, breakpoints, padding
+4. Never add new wrapper elements unless absolutely necessary
+5. Never reorganize existing JSX structure
+6. Build and verify before committing
+7. If a change breaks something else, REVERT IT and find a less invasive fix
+
+**What to change:** CSS breakpoints, padding/margin values, maxWidth, display
+properties, flex values. These are safe, isolated, and reversible.
+
+**What NOT to change:** JSX nesting, component hierarchy, flex container
+structure, element ordering, removing elements to "simplify". These cascade.
+
+**If the user provides a detailed spec:** Follow it EXACTLY. Do not improvise,
+do not "improve" it, do not add your own ideas. The spec is the contract.
+
+**Pitfall: `justifyContent:center` + `overflowX:auto` = clipped items.** When
+a flex container uses both `justifyContent: "center"` and `overflowX: "auto"`,
+content that overflows is centered, but the scrollable area starts at center
+and only scrolls right. Left-side items get permanently clipped. This is the
+#1 cause of "the menu cuts off the first items" bugs. Fix: remove overflow or
+use `justifyContent: "flex-start"` when overflow is needed. Prefer wrapping to
+scrolling when center alignment matters.
+
+**Pitfall: `flex:1 spacer` breaks centering.** `<Box sx={{ flex: 1 }} />`
+pushes everything left, leaving one item isolated on the right. For centered
+categories with a right-aligned button, use a 2-zone layout:
+`<Box flex:1 justifyContent:center>{items}</Box><Button>action</Button>`.
+
+**Build before committing.** Every CSS/layout change MUST pass `npx next build`
+before commit. If it builds, it ships. If the user reports a regression, revert
+the specific change that broke it — do not layer more fixes on top.
+
 ### Hermes Adaptation
 
 This skill was designed for Claude Code. For Hermes Agent, **always** load `references/hermes-adaptation.md` — it documents which commands work, how to adapt the critique workflow (browser tools instead of detect.mjs), and how to use delegate_task instead of spawn_agent.
@@ -129,7 +175,15 @@ When polishing a React + MUI project, load `references/react-mui-polish-patterns
 
 ### CarCrew Commerce Reference
 
-When working on the CarCrew Suspensões e-commerce project (`github.com/linikers/carCrewCommerce`), load `references/carcrew-commerce.md`. It documents the brand's specific design tokens, hexagonal logo component specs, header layout, and MUI v9 quirks.
+When working on the CarCrew Suspensões e-commerce project (`github.com/linikers/carCrewCommerce`), load `references/carcrew-commerce.md`. It documents the brand's specific design tokens, hexagonal logo component specs, header layout, MUI v9 quirks, and the banner system (Prisma schema, API, how to add image banners).
+
+### Free Banner Generation Reference
+
+When generating banners programmatically (for any project), load `references/free-banner-generation.md`. It documents the free toolchain: Pollinations.ai for backgrounds, rembg for subject extraction, and PIL for compositing — plus pitfalls, quality tiers, and deployment steps.
+
+### Free Banner Generation Tools
+
+When the user needs AI-generated banners for e-commerce and asks about tools (especially free ones), load `references/free-banner-tools.md`. It documents Pollinations.ai (zero-setup, no API key), Leonardo.ai (150 free credits/day), HuggingFace Serverless, and the two-step compositing pattern (generate background + overlay logo/CTA with Python PIL). Also confirms Ideogram API is paid-only.
 
 ## Commands
 
