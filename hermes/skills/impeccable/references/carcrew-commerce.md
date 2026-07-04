@@ -48,11 +48,16 @@
 - **Container**: `maxWidth="xl"` (1536px) para caber 11 categorias + "+ Categorias"
 - **Breakpoint**: `display: { xs: "none", lg: "block" }` — nav só aparece ≥1200px; abaixo, hamburger + Drawer
 - **Hamburger**: `display: { xs: "flex", lg: "none" }` — drawer lateral c/ categorias, conta, WhatsApp
-- **Centering**: categorias em `<Box flex:1 justifyContent:"center">`, WhatsApp em `<Button flexShrink:0>`
-- **WhatsApp removido da nav**: agora é FAB flutuante `position:fixed, bottom:24px, right:24px, zIndex:1300`
+- **Centering**: categorias em `<Box flex:1 justifyContent:"center">`, WhatsApp FAB fixo
+- **WhatsApp removido da nav**: agora é FAB flutuante `position:fixed, bottom:24px, right:24px, zIndex:1300` (56px mobile/64px desktop)
 - **Padding responsivo**: `px: { lg: 1.25, xl: 2 }` nos botões de categoria
 - **Sem overflowX no Box externo** — era a causa do menu "solto" no scroll
 - **Sem minWidth:fit-content** — empurrava conteúdo e quebrava layout
+
+### Navegação entre páginas com categorias
+Quando o usuário clica numa categoria fora da home (ex: no checkout), o Header faz `router.push("/?cat=" + slug)`.
+A home lê `?cat` via `useEffect` com `URLSearchParams(window.location.search)` e seta `categoriaAtiva`.
+Isso permite filtrar produtos de qualquer página do site.
 
 ## Design Principles (CarCrew-specific)
 1. **OUSADO > contido.** Hexágono, neon glow, preto-e-laranja. Logo grande centralizado.
@@ -96,6 +101,17 @@ model Banner {
 - Campos: título, subtítulo, link, imgDesktop (upload Cloudinary + URL manual), imgMobile, cores, toggle ativo
 - Preview em miniatura na tabela de listagem
 - Cloudinary: cloud `drvnlgib2`, preset `carcrew` (componente `CloudinaryUpload` existente)
+
+## MUI v9 Quirks (build-breakers)
+
+- **NUNCA usar `InputProps` ou `PaperProps`** — removidos no v9. Causam erro "Property does not exist" no build do Next.js.
+- **`slotProps`** é o substituto oficial, mas em `TextField` pode quebrar o parser ESM do Next.js ("Parsing ecmascript source code failed"). Se quebrar, troque por `helperText`.
+- `slotProps={{ input: { endAdornment: ... } }}` — instável em TextField no Next.js 16 + MUI v9. Evite.
+
+## SEO: texto descritivo na Home
+- Usuário NÃO quer bloco de texto SEO no rodapé da home
+- Texto "Oficina de Suspensão Automotiva em Maringá..." removido após reclamação
+- Conteúdo SEO deve ficar em páginas dedicadas (/sobre, /faq, /off-road) ou na meta description
 
 ## Stack & Deploy
 

@@ -175,7 +175,7 @@ When polishing a React + MUI project, load `references/react-mui-polish-patterns
 
 ### CarCrew Commerce Reference
 
-When working on the CarCrew Suspensões e-commerce project (`github.com/linikers/carCrewCommerce`), load `references/carcrew-commerce.md`. It documents the brand's specific design tokens, hexagonal logo component specs, header layout, MUI v9 quirks, and the banner system (Prisma schema, API, how to add image banners).
+When working on the CarCrew Suspensões e-commerce project (`github.com/linikers/carCrewCommerce`), load `references/carcrew-commerce.md`. It documents the brand's specific design tokens, hexagonal logo component specs, header layout, MUI v9 quirks, the banner system (Prisma schema, API, how to add image banners), and navigation patterns (?cat=slug routing).
 
 ### Free Banner Generation Reference
 

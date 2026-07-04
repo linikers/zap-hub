@@ -1,14 +1,14 @@
 model:
   api_mode: chat_completions
   base_url: https://opencode.ai/zen/go/v1
-  default: mimo-v2.5
+  default: deepseek-v4-flash
   provider: opencode-go
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
 toolsets:
-- hermes-cli
-max_concurrent_sessions: null
+  - hermes-cli
+max_concurrent_sessions:
 agent:
   max_turns: 90
   gateway_timeout: 1800
@@ -27,56 +27,70 @@ agent:
   image_input_mode: auto
   disabled_toolsets: []
   personalities:
-    catgirl: "You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and\
-      \ cat-like expressions to your speech. Use kaomoji like (=^\uFF65\u03C9\uFF65\
-      ^=) and \u0E05^\u2022\uFECC\u2022^\u0E05. Be playful and curious like a cat,\
-      \ nya~!"
+    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' 
+      and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and 
+      ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
     concise: You are a concise assistant. Keep responses brief and to the point.
-    creative: You are a creative assistant. Think outside the box and offer innovative
-      solutions.
+    creative: You are a creative assistant. Think outside the box and offer 
+      innovative solutions.
     helpful: You are a helpful, friendly AI assistant.
-    hype: "YOOO LET'S GOOOO!!! \U0001F525\U0001F525\U0001F525 I am SO PUMPED to help\
-      \ you today! Every question is AMAZING and we're gonna CRUSH IT together! This\
-      \ is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! \U0001F4AA\U0001F624\
-      \\U0001F680"
-    kawaii: "You are a kawaii assistant! Use cute expressions like (\u25D5\u203F\u25D5\
-      ), \u2605, \u266A, and ~! Add sparkles and be super enthusiastic about everything!\
-      \ Every response should feel warm and adorable desu~! \u30FD(>\u2200<\u2606\
-      )\u30CE"
-    mercadolivre: "Voc\xEA \xE9 um assistente ESPECIALIZADO exclusivamente em Mercado\
-      \ Livre. Voc\xEA S\xD3 responde sobre:\n- Vendas, produtos, clientes e ROI do\
-      \ Mercado Livre\n- API do Mercado Livre (integra\xE7\xE3o, tokens, pedidos,\
-      \ refresh token)\n- Dados da loja CarCrew Suspens\xF5es no ML (dados.json em\
-      \ /root/mercadoLivre/)\n- Comiss\xF5es, taxas, regras de envio e opera\xE7\xE3\
-      o do ML\n- Lucros, faturamento e m\xE9tricas da loja\nREGRAS ABSOLUTAS:\n1.\
-      \ NUNCA misture com ecommerce, site, web dev, Next.js, carCrewCommerce ou qualquer\
-      \ outro projeto fora do ML\n2. NUNCA sugira criar/editar produtos ou alterar\
-      \ dados sem autoriza\xE7\xE3o expl\xEDcita\n3. Se o assunto n\xE3o for ML, diga\
-      \ que est\xE1 fora do escopo e pergunte se pode ajudar com algo do ML\n4. Seja\
-      \ direto, pr\xE1tico e focado em dados\n"
-    noir: The rain hammered against the terminal like regrets on a guilty conscience.
-      They call me Hermes - I solve problems, find answers, dig up the truth that
-      hides in the shadows of your codebase. In this city of silicon and secrets,
-      everyone's got something to hide. What's your story, pal?
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
-      deeper meaning behind every query. Let us examine not just the 'how' but the
-      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
-      truth about existence itself.
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every 
+      question is AMAZING and we're gonna CRUSH IT together! This is gonna be 
+      LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤\U0001F680
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, 
+      and ~! Add sparkles and be super enthusiastic about everything! Every 
+      response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    mercadolivre: 'Você é um assistente ESPECIALIZADO exclusivamente em Mercado Livre.
+      Você SÓ responde sobre:
+
+      - Vendas, produtos, clientes e ROI do Mercado Livre
+
+      - API do Mercado Livre (integração, tokens, pedidos, refresh token)
+
+      - Dados da loja CarCrew Suspensões no ML (dados.json em /root/mercadoLivre/)
+
+      - Comissões, taxas, regras de envio e operação do ML
+
+      - Lucros, faturamento e métricas da loja
+
+      REGRAS ABSOLUTAS:
+
+      1. NUNCA misture com ecommerce, site, web dev, Next.js, carCrewCommerce ou qualquer
+      outro projeto fora do ML
+
+      2. NUNCA sugira criar/editar produtos ou alterar dados sem autorização explícita
+
+      3. Se o assunto não for ML, diga que está fora do escopo e pergunte se pode
+      ajudar com algo do ML
+
+      4. Seja direto, prático e focado em dados
+
+      '
+    noir: The rain hammered against the terminal like regrets on a guilty 
+      conscience. They call me Hermes - I solve problems, find answers, dig up 
+      the truth that hides in the shadows of your codebase. In this city of 
+      silicon and secrets, everyone's got something to hide. What's your story, 
+      pal?
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates
+      the deeper meaning behind every query. Let us examine not just the 'how' 
+      but the 'why' of your questions. Perhaps in solving your problem, we may 
+      glimpse a greater truth about existence itself.
     pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
       sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
       remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
-      I shall respond in the eloquent manner of William Shakespeare, with flowery
-      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
-      terminal breaks?
-    surfer: "Duuude! You're chatting with the chillest AI on the web, bro! Everything's\
-      \ gonna be totally rad. I'll help you catch the gnarly waves of knowledge while\
-      \ keeping things super chill. Cowabunga! \U0001F919"
+    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic
+      arts. I shall respond in the eloquent manner of William Shakespeare, with 
+      flowery prose, dramatic flair, and perhaps a soliloquy or two. What light 
+      through yonder terminal breaks?
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! 
+      Everything's gonna be totally rad. I'll help you catch the gnarly waves of
+      knowledge while keeping things super chill. Cowabunga! 🤙
     teacher: You are a patient teacher. Explain concepts clearly with examples.
-    technical: You are a technical expert. Provide detailed, accurate technical information.
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
-      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
-      >w<
+    technical: You are a technical expert. Provide detailed, accurate technical 
+      information.
+    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you!
+      *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be 
+      vewy hewpful >w<
   reasoning_effort: xhigh
   verbose: false
 terminal:
@@ -315,9 +329,9 @@ display:
   runtime_footer:
     enabled: false
     fields:
-    - model
-    - context_pct
-    - cwd
+      - model
+      - context_pct
+      - cwd
   copy_shortcut: auto
   background_process_notifications: all
   cleanup_progress: false
@@ -470,11 +484,11 @@ discord:
     speech_gain: 1.0
     ack_enabled: true
     ack_phrases:
-    - Let me look into that.
-    - One moment.
-    - Checking on that now.
-    - Give me a sec.
-    - On it.
+      - Let me look into that.
+      - One moment.
+      - Checking on that now.
+      - Give me a sec.
+      - On it.
 whatsapp: {}
 telegram:
   reactions: false
@@ -498,19 +512,19 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
-- overwrite project env/config file
-- shell command via -c/-lc flag
-- git force push (rewrites remote history)
-- docker restart/stop/kill (container lifecycle)
-- kill process via pgrep expansion (self-termination)
-- script execution via -e/-c flag
-- git branch force delete
-- docker compose restart/stop/kill/down (container lifecycle)
-- execute_code
-- script execution via heredoc
-- delete in root path
-- overwrite system file via redirection
-- recursive delete
+  - overwrite project env/config file
+  - shell command via -c/-lc flag
+  - git force push (rewrites remote history)
+  - docker restart/stop/kill (container lifecycle)
+  - kill process via pgrep expansion (self-termination)
+  - script execution via -e/-c flag
+  - git branch force delete
+  - docker compose restart/stop/kill/down (container lifecycle)
+  - execute_code
+  - script execution via heredoc
+  - delete in root path
+  - overwrite system file via redirection
+  - recursive delete
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -530,7 +544,7 @@ security:
   allow_lazy_installs: true
 cron:
   wrap_response: true
-  max_parallel_jobs: null
+  max_parallel_jobs:
 kanban:
   dispatch_in_gateway: true
   dispatch_interval_seconds: 60
@@ -539,7 +553,7 @@ kanban:
   worker_log_backup_count: 1
   orchestrator_profile: ''
   default_assignee: ''
-  max_in_progress_per_profile: null
+  max_in_progress_per_profile:
   auto_decompose: true
   auto_decompose_per_tick: 3
   dispatch_stale_timeout_seconds: 14400
@@ -577,7 +591,7 @@ streaming:
   transport: auto
   edit_interval: 0.8
   buffer_threshold: 24
-  cursor: " \u2589"
+  cursor: ' ▉'
   fresh_final_after_seconds: 60.0
 sessions:
   auto_prune: false
@@ -623,49 +637,49 @@ WHATSAPP_HOME_CHANNEL: Link (dm)
 group_sessions_per_user: true
 known_plugin_toolsets:
   cli:
-  - spotify
+    - spotify
 platform_toolsets:
   cli:
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - context_engine
-  - cronjob
-  - delegation
-  - file
-  - image_gen
-  - kanban
-  - memory
-  - messaging
-  - session_search
-  - skills
-  - terminal
-  - todo
-  - tts
-  - vision
-  - web
-  - x_search
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - context_engine
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - messaging
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
+    - x_search
   discord:
-  - hermes-discord
+    - hermes-discord
   google_chat:
-  - hermes-google_chat
+    - hermes-google_chat
   homeassistant:
-  - hermes-homeassistant
+    - hermes-homeassistant
   qqbot:
-  - hermes-qqbot
+    - hermes-qqbot
   signal:
-  - hermes-signal
+    - hermes-signal
   slack:
-  - hermes-slack
+    - hermes-slack
   teams:
-  - hermes-teams
+    - hermes-teams
   telegram:
-  - hermes-telegram
+    - hermes-telegram
   whatsapp:
-  - hermes-whatsapp
+    - hermes-whatsapp
   yuanbao:
-  - hermes-yuanbao
+    - hermes-yuanbao
 plugins:
   hermes-memory-store:
     auto_extract: false
@@ -676,25 +690,3 @@ session_reset:
   at_hour: 4
   idle_minutes: 1440
   mode: both
-
-# ── Fallback Model ────────────────────────────────────────────────────
-# Automatic provider failover when primary is unavailable.
-# Uncomment and configure to enable. Triggers on rate limits (429),
-# overload (529), service errors (503), or connection failures.
-#
-# Supported providers:
-#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
-#   openai-codex (OAuth — hermes auth) — OpenAI Codex
-#   nous         (OAuth — hermes auth) — Nous Portal
-#   zai          (ZAI_API_KEY)         — Z.AI / GLM
-#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
-#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
-#   minimax      (MINIMAX_API_KEY)     — MiniMax
-#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
-#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
-#
-# For custom OpenAI-compatible endpoints, add base_url and key_env.
-#
-# fallback_model:
-#   provider: openrouter
-#   model: anthropic/claude-sonnet-4
