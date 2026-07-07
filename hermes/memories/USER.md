@@ -1,11 +1,17 @@
-Liniker: dev full-stack Car Crew Garage. Windows/PowerShell. Português informal, ação direta. Issues pra features. PR imediato. Investigar antes de agir. Cobra decisões corretas — verificar ONDE frontend lê ANTES de alterar dados. Não misturar atividades. Prefere PostgreSQL como fonte única (não JSON). Respostas diretas, listas formatadas.
+Dev full-stack Car Crew Garage. Windows/PowerShell. Português informal, ação direta. Pragmático — aceita "NÃO testado" honesto, odeia over-engineering. Issues pra features, PR imediato com diff/stat descritivo. Prefere PostgreSQL (não JSON).
 §
 Nome: liniker, email: linikers@hotmail.com. Git config ajustado pra isso.
 §
-Liniker: prefere ação direta, português informal. Não gosta de confirmações longas — quer ver resultado. Quando erra algo (ex: dizer "não tem X" e ele provar que tem), reconhecer rápido e corrigir. Prefere self-service (cria branch, merge PR, etc).
+Ação direta, português informal. Não gosta de confirmações longas. Quando erro, reconhecer rápido e corrigir. Prefere self-service, aceita entregas parciais e "NÃO testado" honesto.
 §
-PRs descritivos: lista o que mudou + testado vs NÃO testado + limitações conhecidas. Quer ver diff/stat antes do PR. Aceita entregas parciais incrementais. Pragmático — aceita "NÃO testado" honesto em vez de superestimar.
+PRs: descritivos (mudou + testado vs não testado), diff/stat antes. Aceita entregas parciais.
 §
 Banners: NUNCA gerar veículo com IA (Pollinations/SDXL). Usar foto real do usuário + rembg pra fundo. Aprovou estilo: logo hex esquerda + tagline + veículo ação direita.
 §
 Landing pages e páginas novas (FAQ, Off-Road) precisam de link visível no menu ou footer — URL direta não basta. Categorias no nav redirecionam pra home com ?cat=slug.
+§
+Curso ERC20 Token Lab: ecr20ttk.vercel.app, admin admin1234. Pix/BTC estático, aprovação manual.
+§
+Pragmático, foco em resultado prático > complexidade técnica. Prefere soluções funcionais sem depender de terceiros quando possível. Gosta de ação direta sem firula.
+§
+User: ao analisar rede social, scrollar e verificar conteudo antes de afirmar que nao tem posts — nao confiar no header da pagina.
