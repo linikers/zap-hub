@@ -1,17 +1,11 @@
-Dev full-stack Car Crew Garage. Windows/PowerShell. Português informal, ação direta. Pragmático — aceita "NÃO testado" honesto, odeia over-engineering. Issues pra features, PR imediato com diff/stat descritivo. Prefere PostgreSQL (não JSON).
-§
-Nome: liniker, email: linikers@hotmail.com. Git config ajustado pra isso.
-§
 Ação direta, português informal. Não gosta de confirmações longas. Quando erro, reconhecer rápido e corrigir. Prefere self-service, aceita entregas parciais e "NÃO testado" honesto.
 §
-PRs: descritivos (mudou + testado vs não testado), diff/stat antes. Aceita entregas parciais.
-§
-Banners: NUNCA gerar veículo com IA (Pollinations/SDXL). Usar foto real do usuário + rembg pra fundo. Aprovou estilo: logo hex esquerda + tagline + veículo ação direita.
-§
-Landing pages e páginas novas (FAQ, Off-Road) precisam de link visível no menu ou footer — URL direta não basta. Categorias no nav redirecionam pra home com ?cat=slug.
-§
-Curso ERC20 Token Lab: ecr20ttk.vercel.app, admin admin1234. Pix/BTC estático, aprovação manual.
-§
-Pragmático, foco em resultado prático > complexidade técnica. Prefere soluções funcionais sem depender de terceiros quando possível. Gosta de ação direta sem firula.
-§
 User: ao analisar rede social, scrollar e verificar conteudo antes de afirmar que nao tem posts — nao confiar no header da pagina.
+§
+User irrita quando finjo desentendimento sobre meus próprios repos — saber de cor o que criei. E odeia quando misturo projetos (ex: citar rocketstar em erro do portfolio). Foco total no assunto da vez.
+§
+Vende servicos dev autonomo: landing pages R$199-R$499, sistemas R$999-R$2999, bots/automacao, Web3, manutencao. Dominio principal: linikers.cloud na Vercel. Quer Hermes como vendedor automatico no WhatsApp (persona vendas).
+§
+Dev full-stack. Português informal, ação direta, sem confirmações longas. Pragmático — prefere solução funcional sem depender de terceiros. Entrega parcial honesta > promessa vazia.
+§
+CRM de prospecção (portfolio): Next.js+MUI+OSM. Overpass via proxy externo (srv1690659:3099). Overpass cai frequentemente (406) — considerar Google Places como alternativa.
