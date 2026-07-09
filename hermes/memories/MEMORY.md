@@ -4,7 +4,7 @@ Taiff Connect: api.taiff-connect.com.br. Express+TypeORM+PG+EKS(Helm). gp2 PVC 2
 §
 AutoHedge: cron 6h + MA Bounce 1h. Dashboard 9120. Meta $5 lucro. MAX_TRADE_USD=$1.00.
 §
-WhatsApp routing: bridge 3000 (principal, 5544991528386) = geral/ML/ecommerce. Bridge 3003 (NF-e, 554491277833) = SOMENTE NF-e. NUNCA cross-bridge. Envio: python3 /root/whatsapp-send/send-validated.py. Routing: /root/whatsapp-routing.json.
+WhatsApp: bridge 3000 (5544991528386, Baileys self-chat) agora responde NF-e automaticamente p/ qq chamador. Bridge 3003 (554491277833) = Escomar NF-e conectado. send-validated.py p/ envio. Routing: /root/whatsapp-routing.json (desatualizado). NUNCA cross-bridge.
 §
 nfe-brasil: /opt/nfe-brasil. Docker: postgres:5433, redis:6380, evo:8085, mcp:8090, bot:3010. API key: nfe-brasil-2026. NUNCA sed dentro de container — sempre rebuild compose.
 §
@@ -12,10 +12,8 @@ CarCrew Commerce: github.com/linikers/carCrewCommerce, Next.js 15+MUI v9+Prisma 
 §
 Vercel serverless: filesystem READ-ONLY. writeFileSync/readFileSync sempre falham. Persistência → banco (Prisma) ou API externa.
 §
-ERC20 Token Lab (ecr20ttk.vercel.app): curso R$19, Pix + BTC. Admin /admin/commerce senha admin1234. Afiliado via ?ref=. X: @hermesBigAgent. Conteúdo: /root/hermesCabeca/ideias/x-content-calendar.md.
-§
 Rocketstar (github.com/linikers/rocketstar): votação Otttakucon, Next.js+MongoDB+MUI. 12 jurados, QR por jurado, 6 criterios 0-10. PR #39.
 §
 ERC20 Token Lab: ecr20ttk.vercel.app (SEM o 'r' depois do 'e'!). Admin: senha via env var ADMIN_PASSWORD. Afiliado via ?ref=email.
 §
-CRM search: Nominatim geocode + proxy Overpass. Vercel Overpass 406 — proxy srv1690659:3099 (systemd, 3 mirrors). Skill prospecting-maps-crm updated.
+CRM Prospecção (portfolio): Google Places API (New) + Nominatim geocode. 3 abas: Leads/Métricas/Mapa. Leaflet mapa. Chart.js métricas. Import JSON. Pipeline: Novo→Contactado→Interessado→Convertido→Perdido. Sem autenticação. Proxy Overpass srv1690659:3099 fallback.
