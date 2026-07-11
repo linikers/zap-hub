@@ -8,12 +8,16 @@ WhatsApp: bridge 3000 (5544991528386, Baileys self-chat) agora responde NF-e aut
 §
 nfe-brasil: /opt/nfe-brasil. Docker: postgres:5433, redis:6380, evo:8085, mcp:8090, bot:3010. API key: nfe-brasil-2026. NUNCA sed dentro de container — sempre rebuild compose.
 §
-CarCrew Commerce: github.com/linikers/carCrewCommerce, Next.js 15+MUI v9+Prisma 7+PostgreSQL Neon (ep-dark-cell-acyfev6p-pooler.sa-east-1), Vercel. GA4 539721340, svc account carcrew@carcrew-501218.iam.gserviceaccount.com. Cloudinary drvnlgib2/carcrew. Business 5.0★ 121 reviews. SEO: 3 index/49 não-index. Keywords: oficina/rebaixados/suspensão ar/fixa/rosca/coilover/air lift Maringá. Vercel envs: GA4_SERVICE_ACCOUNT_EMAIL, GA4_SERVICE_ACCOUNT_KEY, GA4_PROPERTY_ID.
+CarCrew: carcrew.com.br, Next.js+MUI+Prisma+Neon+Vercel. GA4 539721340. Cloudinary drvnlgib2/carcrew. Keywords: oficina/rebaixados/suspensão Maringá.
 §
 Vercel serverless: filesystem READ-ONLY. writeFileSync/readFileSync sempre falham. Persistência → banco (Prisma) ou API externa.
 §
-Rocketstar (github.com/linikers/rocketstar): votação Otttakucon, Next.js+MongoDB+MUI. 12 jurados, QR por jurado, 6 criterios 0-10. PR #39.
+Rocketstar: github.com/linikers/rocketstar. Votação Otttakucon, Next.js+MongoDB+MUI.
 §
-ERC20 Token Lab: ecr20ttk.vercel.app (SEM o 'r' depois do 'e'!). Admin: senha via env var ADMIN_PASSWORD. Afiliado via ?ref=email.
+ERC20 Token Lab: ecr20ttk.vercel.app (sem R). Admin via env var ADMIN_PASSWORD. Afiliado?ref=email.
 §
 CRM Prospecção (portfolio): Google Places API (New) + Nominatim geocode. 3 abas: Leads/Métricas/Mapa. Leaflet mapa. Chart.js métricas. Import JSON. Pipeline: Novo→Contactado→Interessado→Convertido→Perdido. Sem autenticação. Proxy Overpass srv1690659:3099 fallback.
+§
+Portfolio (linikers.cloud): domínio Hostinger, DNS Vercel (A 76.76.21.21). Next.js em /root/portfolio/linikers.
+§
+User prefere ser guiado passo-a-passo por interfaces em vez de passar credenciais.

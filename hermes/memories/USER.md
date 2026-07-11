@@ -1,11 +1,11 @@
-Ação direta, português informal. Não gosta de confirmações longas. Quando erro, reconhecer rápido e corrigir. Prefere self-service, aceita entregas parciais e "NÃO testado" honesto.
+Comunicação: pt-BR informal, direto, sem confirmações longas. Erro → corrigir rápido. Entrega parcial honesta > promessa vazia. Self-service.
 §
-User: ao analisar rede social, scrollar e verificar conteudo antes de afirmar que nao tem posts — nao confiar no header da pagina.
+Não fingir desentendimento sobre meus repos. Foco total no assunto, sem misturar projetos.
 §
-User irrita quando finjo desentendimento sobre meus próprios repos — saber de cor o que criei. E odeia quando misturo projetos (ex: citar rocketstar em erro do portfolio). Foco total no assunto da vez.
+Landing pages: visual comercial/limpo. Nada de prompts $, monospace, neon/cian. Profissional para empresários locais.
 §
-Vende servicos dev autonomo: landing pages R$199-R$499, sistemas R$999-R$2999, bots/automacao, Web3, manutencao. Dominio principal: linikers.cloud na Vercel. Quer Hermes como vendedor automatico no WhatsApp (persona vendas).
+Servicos: landing R$199-499, e-commerce R$2-3k, bots/Web3. Case CarCrew. Prefere AWS.
 §
-Dev full-stack. Português informal, ação direta, sem confirmações longas. Pragmático — prefere solução funcional sem depender de terceiros. Entrega parcial honesta > promessa vazia.
+Workflow: fases bem definidas (docs→arquitetura→código), nunca pular etapas. Comandos diretos, sem extras não solicitados. Documentação estruturada com tabelas/diagramas Mermaid. Desobediência = frustração.
 §
-CRM de prospecção (portfolio): Next.js+MUI+OSM. Overpass via proxy externo (srv1690659:3099). Overpass cai frequentemente (406) — considerar Google Places como alternativa.
+Fluxo de conclusão de Tasks (obrigatório): 1) Validar critérios, 2) typecheck, 3) lint, 4) testes, 5) build, 6) TODO/FIXME, 7) CHANGELOG, 8) TASKS, 9) resumo técnico, 10) próxima Task. NUNCA iniciar próxima sem confirmação.
