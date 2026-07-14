@@ -6,6 +6,14 @@ Landing pages: visual comercial/limpo. Nada de prompts $, monospace, neon/cian. 
 §
 Servicos: landing R$199-499, e-commerce R$2-3k, bots/Web3. Case CarCrew. Prefere AWS.
 §
-Workflow: fases bem definidas (docs→arquitetura→código), nunca pular etapas. Comandos diretos, sem extras não solicitados. Documentação estruturada com tabelas/diagramas Mermaid. Desobediência = frustração.
+Workflow: docs→arquitetura→código, tasks atômicas sem escopo extra. Relatórios com tabelas + checklist. Desobediência = frustração. Full check antes do commit: typecheck→lint→test→build.
 §
-Fluxo de conclusão de Tasks (obrigatório): 1) Validar critérios, 2) typecheck, 3) lint, 4) testes, 5) build, 6) TODO/FIXME, 7) CHANGELOG, 8) TASKS, 9) resumo técnico, 10) próxima Task. NUNCA iniciar próxima sem confirmação.
+Proj. Marketing OS: multi-agente, npm monorepo + turbo + Prisma 6. ADR obrigatório antes de qualquer decisão arquitetural.
+§
+Prefere pt-BR para comunicação de domínio, inglês técnico aceito em código. Role 'Software Engineer' com bootstrap formal antes de tasks.
+§
+During long tasks (>3 tool calls), proactively send brief progress updates before being asked.
+§
+NUNCA deixar turno vazio apos tool call — processar resultados e responder imediatamente.
+§
+Dono de linikers.cloud (Vercel), quer Marketing OS acessivel via marketing.linikers.cloud. Ja roda servicos nesta VPS: nfe-brasil (Docker), zap-hub bridges, bots WhatsApp.

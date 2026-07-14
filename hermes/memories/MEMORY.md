@@ -12,12 +12,10 @@ CarCrew: carcrew.com.br, Next.js+MUI+Prisma+Neon+Vercel. GA4 539721340. Cloudina
 §
 Vercel serverless: filesystem READ-ONLY. writeFileSync/readFileSync sempre falham. Persistência → banco (Prisma) ou API externa.
 §
-Rocketstar: github.com/linikers/rocketstar. Votação Otttakucon, Next.js+MongoDB+MUI.
-§
-ERC20 Token Lab: ecr20ttk.vercel.app (sem R). Admin via env var ADMIN_PASSWORD. Afiliado?ref=email.
-§
 CRM Prospecção (portfolio): Google Places API (New) + Nominatim geocode. 3 abas: Leads/Métricas/Mapa. Leaflet mapa. Chart.js métricas. Import JSON. Pipeline: Novo→Contactado→Interessado→Convertido→Perdido. Sem autenticação. Proxy Overpass srv1690659:3099 fallback.
 §
 Portfolio (linikers.cloud): domínio Hostinger, DNS Vercel (A 76.76.21.21). Next.js em /root/portfolio/linikers.
 §
 User prefere ser guiado passo-a-passo por interfaces em vez de passar credenciais.
+§
+Marketing OS: VPS local. API 3002, Dashboard 3001. DB marketing_os:5432, Redis:6379. pkg exports fix: tsup .js (CJS) .mjs (ESM). Branch main criada de docs/inicial.
