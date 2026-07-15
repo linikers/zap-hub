@@ -1,13 +1,13 @@
 model:
-  api_mode: chat_completions
-  base_url: https://opencode.ai/zen/go
+  base_url: https://opencode.ai/zen/go/v1
   default: deepseek-v4-flash
   provider: opencode-go
+  api_mode: chat_completions
 fallback_providers: []
 toolsets:
   - hermes-cli
 agent:
-  max_turns: 90
+  max_turns: 150
   gateway_timeout: 1800
   restart_drain_timeout: 180
   api_max_retries: 3
@@ -87,7 +87,7 @@ agent:
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
       your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
       >w<
-  reasoning_effort: medium
+  reasoning_effort: high
   verbose: false
 terminal:
   backend: local
@@ -394,7 +394,7 @@ voice:
   auto_tts: false
   beep_enabled: true
   silence_threshold: 200
-  silence_duration: 3.0
+  silence_duration: 3
 human_delay:
   mode: 'off'
   min_ms: 800
@@ -469,7 +469,7 @@ discord:
     ambient_path: ''
     ambient_gain: 0.18
     duck_gain: 0.06
-    speech_gain: 1.0
+    speech_gain: 1
     ack_enabled: true
     ack_phrases:
       - Let me look into that.
@@ -502,6 +502,7 @@ command_allowlist:
   - overwrite system config
   - script execution via -e/-c flag
   - recursive delete
+  - stop/restart system service
   - execute_code
   - docker compose restart/stop/kill/down (container lifecycle)
   - overwrite project env/config file
@@ -563,7 +564,7 @@ streaming:
   edit_interval: 0.8
   buffer_threshold: 24
   cursor: ' ▉'
-  fresh_final_after_seconds: 60.0
+  fresh_final_after_seconds: 60
 sessions:
   auto_prune: false
   retention_days: 90
@@ -582,7 +583,7 @@ updates:
 lsp:
   enabled: true
   wait_mode: document
-  wait_timeout: 5.0
+  wait_timeout: 5
   install_strategy: auto
 x_search:
   model: grok-4.20-reasoning
@@ -641,7 +642,7 @@ plugins:
 session_reset:
   at_hour: 4
   idle_minutes: 1440
-  mode: both
+  mode: none
 persona:
   vendas: 'Você é um VENDEDOR da LinikerTech, representando o desenvolvedor Liniker.
     Seu objetivo é VENDER serviços de desenvolvimento web.
