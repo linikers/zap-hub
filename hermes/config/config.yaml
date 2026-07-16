@@ -498,22 +498,23 @@ approvals:
   destructive_slash_confirm: true
 command_allowlist:
   - git force push (rewrites remote history)
-  - script execution via heredoc
-  - overwrite system config
-  - script execution via -e/-c flag
-  - recursive delete
-  - stop/restart system service
-  - execute_code
-  - docker compose restart/stop/kill/down (container lifecycle)
-  - overwrite project env/config file
   - in-place edit of Hermes config/env
-  - kill process via pgrep expansion (self-termination)
+  - overwrite project env/config via redirection
+  - recursive delete
   - shell command via -c/-lc flag
+  - overwrite system config
+  - script execution via heredoc
+  - docker restart/stop/kill (container lifecycle)
+  - overwrite project env/config file
+  - execute_code
+  - delete in root path
+  - docker compose restart/stop/kill/down (container lifecycle)
+  - kill process via pgrep expansion (self-termination)
   - shell execution via heredoc
+  - stop/restart system service
   - git branch force delete
   - overwrite system file via redirection
-  - delete in root path
-  - docker restart/stop/kill (container lifecycle)
+  - script execution via -e/-c flag
 hooks_auto_accept: false
 security:
   allow_private_urls: false
