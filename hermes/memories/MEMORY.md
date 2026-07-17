@@ -4,14 +4,12 @@ WhatsApp: bridge 3000 (5544991528386, Baileys self-chat) agora responde NF-e aut
 §
 User prefere que eu pergunte e ele define ('me pergunte que eu defino') em vez de eu assumir ou implementar do meu jeito. Perguntar primeiro, implementar depois.
 §
-Marketing OS: /root/hermes-marketing-orchestrator. Monorepo Turbo+Next+Prisma+PG. API 3002, Dash 3001, Nginx 80. Branch docs/inicial. EventBus+Supervisor+especialistas (T-702/703/706/707).
-§
-Provedor LLM principal: OpenCode Go (deepseek-v4-flash). Nao tem chave OpenRouter nem Nous Portal pago.
-§
-Prefere pt-BR direto e prático. Frustra-se com troubleshooting longo. Quer resultado concreto, nao explicação abstrata. Testa imediatamente o que é implementado ('nao sai do login') e espera que eu valide antes de entregar.
-§
-Marketing OS: migration `add_historico_eventos_campanhas` já commitada (cria historico_interacoes, eventos, campanhas). Fix: iniciarSequencia não aplica window adjustment quando janela não configurada.
+Provedor LLM: OpenCode Go (opencode.ai/zen/go/v1). Prefere pt-BR direto, resultado concreto, testa imediatamente. Exige análise antes de mudanças grandes.
 §
 User exige análise arquitetural (Prompt 0) antes de implementar mudanças grandes — revisar SOLID, escalabilidade, duplicações, dependências circulares e aguardar aprovação. Relatórios estruturados obrigatórios. Não tolera retrabalho. Tech debt deve ser documentado como GitHub Issues para rastreamento.
 §
 Gosta que eu ofereça treinamento/configuracao completa depois de implementar. Quer entender o estado real do projeto (oq funciona, oq é mock, oq falta). Aprecia resumo tabular com prioridades (🔴🟡🟢).
+§
+Marketing OS: monorepo Turbo+Next+Prisma+PG. API 3002, Dash 3001, Nginx 80. Branches syncadas via fast-forward. DB: postgres docker (marketing_dev). Token ML seller 50816240 renovado via refresh_token (cron 5h, scripts/refresh-ml-token.py). Fluxos ML: direto (consultar) e agente IA (agent/analisar). Dash UI: auto-refresh com toggle (desligado padrão) + btn manual. Prompts criados: marketplace.md, analytics.md, lead.md, channel.md, optimizer.md.
+§
+Marketing OS — pacote @marketing-os/ads criado com Google Ads + Meta Ads mock clients, AdsService, tipos compartilhados, dashboard com gráficos Recharts (gasto, receita, ROAS, CTR, CPC, impressões, cliques). Schema Prisma adicionado: AdConta, AdCampanha, AdMetrica, AdCriativo. Google Ads Specialist + Meta Ads Specialist criados com prompts google-ads.md e meta-ads.md. Rota API /api/ads. Dashboard em /ads no Next.js.
