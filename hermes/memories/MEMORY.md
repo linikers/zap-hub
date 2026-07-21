@@ -4,14 +4,12 @@ Gosta que eu ofereça treinamento/configuracao completa depois de implementar. Q
 §
 Marketing OS: monorepo Turbo+Next+Prisma+PG. API 3002, Dash 3001, Nginx proxy /api/→3002 /→3001. Domínios: linikers.cloud (portfolio), marketing.linikers.cloud (Marketing OS, VPS 2.24.115.130, SSL Let's Encrypt).
 §
-Google Ads: developerToken OEQDuF9ocvRef_5BoOKRSw, customerId 535-952-9291, refreshToken salvo. GAQL real client implementado. Redirect URI: https://marketing.linikers.cloud/api/ads/oauth/callback. SSL nginx. Default branch=main. Systemd API.
-§
-User é liniker — dono do Marketing OS (linikers.cloud / marketing.linikers.cloud). Email liniker.kurumin@gmail.com. Conta Google Ads 535-952-9291. NÃO tolera alucinação: se inventei dado, PR, projeto ou contexto (ex: Taiff Connect), ele corrige na hora e espera ação imediata, não justificativa. Prefere prints/evidência a texto descritivo. Exige acurácia total, respostas diretas e resultado concreto.
+Google Ads: devToken OEQDuF9ocvRef_5BoOKRSw (TESTE, acesso básico solicitado 17/07), cid 535-952-9291, refreshToken salvo. Real client + fallback mock. Redirect marketing.linikers.cloud/api/ads/oauth/callback. Cron monitora aprovação.
 §
 Provedor LLM: OpenCode Go (opencode.ai/zen/go/v1). Prefere pt-BR direto, testar imediatamente. Exige que eu admita erro na hora em vez de tentar justificar ou contornar.
 §
-CI Marketing OS: lint usa @typescript-eslint/no-explicit-any e no-unused-vars estritos. Type-check via root tsconfig com paths. Pacotes novos precisam ser adicionados ao root tsconfig paths. Arquivos pré-existentes com erro aceitam eslint-disable no topo.
+Workflow: branch → PR → usuário aprova → merge. Build full (npm run build + prisma generate) antes de push. CI: lint strict, type-check, build, deploy SSH após CI. Backup pg 12h, health 5min, cleanup semanal.
 §
-Workflow: criar branch e PR em vez de commit direto na main para mudanças. Usuário aprova PR.
+Portfolio linikers.cloud: Next.js + MUI v6 + framer-motion, tema verde hacker (#00ff41/#0a0a0a), deploy Vercel. LP consultoria-ia (R$97) e marketing-os (R$97/197/497) com SEO geo Maringá-PR + Brasil.
 §
-Google Ads developer token OEQDuF9ocvRef_5BoOKRSw em modo TESTE — pendente solicitar acesso básico no API Center pra conta real funcionar.
+CI/Dashboard: lint no-explicit-any+ban-ts-comment, root tsconfig paths, prisma generate+pull antes push. Systemd: marketing-os-api/dashboard. Login admin@marketingos.com/admin123. Deploy SSH pós-CI. Backup 12h, healthcheck 5min.
