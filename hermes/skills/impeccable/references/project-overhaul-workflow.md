@@ -27,8 +27,28 @@ One PR per issue — never bundle unrelated fixes. Order matters — fix foundat
 2. **Theme / brand identity** — establishes the design system
 3. **Component-level fixes** (gradients, glassmorphism, hero) — applies the theme
 4. **UX/pattern fixes** (confirm dialogs, loading states) — polishes interactions
-5. **Mobile/responsive fixes** — adapts to all screens
-6. **Polish pass** — final refinement
+6. **Mobile/responsive fixes** — adapts to all screens
+7. **Polish pass** — final refinement
+
+### Priority-Level Rollout (Alternative to per-issue PRs)
+
+When the user wants fast progress over strict separation ("vamos fazer o redesign incremental"), use severity-level phases instead of per-issue PRs. Get approval between each level:
+
+| Level | What | Examples |
+|-------|------|----------|
+| **P0** | Foundation | Theme, palette, typography, layout shell, sidebar structure |
+| **P1** | Consistency | Remove hardcoded colors, align all pages to theme, font fixes |
+| **P2** | UX | Tooltips, empty states, skeletons, mobile responsiveness, profile |
+| **P3** | Polish | Icon standardization, chart colors, table styling, edge cases |
+
+**Flow:**
+1. `Critique → Fase P0 → "pronto?" → Fase P1 → "pronto?" → ...`
+2. After each phase: build + commit + push (single commit per phase)
+3. Show progress table after each phase
+4. User reviews holistically at the end
+
+Use this when: user says "deixar profissional e intuitivo de usar" or similar holistic improvement request.
+Skip it when: user has specific per-issue complaints or tickets.
 ### Phase 4: Polish (Finish)
 
 After all fixes are merged, run one final polish pass using `references/react-mui-polish-patterns.md` as a checklist:
