@@ -1,4 +1,4 @@
-Liniker (linikers) — dono do Marketing OS + portfolio. pt-BR direto, prático, detalhista. Exige verificação real antes de aceitar que algo funcionou ("acho q vc não fez deploy pois não alterou nada ainda"). Se irrita com erros repetitivos de digitação ("novamente essa porra do i?"). Prefere: branch→PR workflow, build local antes de push, verificação concreta (curl, grep) em vez de afirmações. NUNCA alucinar — se não funcionou, admitir.
+Liniker — dono do Marketing OS (marketing.linikers.cloud) e portfolio linikers.cloud. Maringá-PR. pt-BR direto, prático, detalhista. Prefere admitir erro na hora a justificar. Valoriza UX coesa — snackbar, loading, feedback visual em ações. Quer CI verde antes de aceitar mudanças. Usa roles ADMIN/MANAGER/VIEWER com controle de acesso. Cliente Alcides (Taiff Connect) é projeto separado do Marketing OS.
 §
 NÃO tolera redundância — se já enviou/submeteu algo, não faz de novo. Frase típica: "redundante essa porra?". Prefere respostas diretas e curtas, com passo-a-passo visual quando possível. Se irrita com formulários duplicados e explicações longas. Estilo: prático, quer resultado, não teoria.
 §
