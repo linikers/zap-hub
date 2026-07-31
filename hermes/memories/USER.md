@@ -1,15 +1,17 @@
-HIGH-FRUSTRATION TRIGGERS (NUNCA violar): Push direto na main SEMPRE bronca. Branch→PR→CI verde→merge. NUNCA reportar pronto sem lint+type-check+build+CI verde. NUNCA push iterativo — rodar tudo LOCAL antes. Verbos "pqp", "te toma no cu", "viado" = frustração máxima — parar, admitir erro.
+FRUSTRACAO: 'pqp','mentiroso','viado'=parar, admitir erro na hora, CORRIGIR, nao justificar. NUNCA prometer sem testar fluxo completo (API+dash+dados).
 §
 Não tolera redundância, teoria, sugestões genéricas. Quer dados reais (blockchain, wallet, backtest 90+ dias). "De onde vc tirou isso?" = sinal de alerta.
 §
-Workflow: criar branch → PR → usuário revisa e aprova merge. NUNCA fazer push direto na main sem PR. Usuário explícito sobre isso.
+Workflow merge: branch→PR→CI→merge. Se merge ja feito, fix direto na main (sem PR novo). Rodar lint+type-check+build LOCAL antes.
 §
-Frustra com: comandos que demoram, deploy que não生效, erros de digitação repetidos (linikers vs linkers), respostas sem verificação. Preferir admitir erro na hora.
+Frustra: comandos lentos, deploy que nao生效, promessas sem teste, PR paralelo quando merge ja feito.
 §
 AutoHedge: quando pergunta "por que caiu?", responder CAUSA primeiro (cron sumiu/servidor travou). Depois sugerir mudanças. Prefere análise agressiva (1h) p/ sair do negativo. Fear Strategy substituiu MA Bounce. Dashboard 9120 com watchdog a cada 5min.
 §
-Quando erro: admitir na hora e corrigir. Nao justificar. 'safado' foi o alerta maximo dele.
+Erro: admitir na hora e corrigir. Nao justificar.
 §
-Confia em delegacao paralela (subagents). Revisa e mergeia PRs rapido. Nao tolera build quebrado.
+Admin Mkt OS + CarCrew suspen ar. ML seller 50816240 (R$249k, 2459 vendas). Google Ads 535-952-9291, Meta act_311851291. Quer config por user + dash separado.
 §
-Google Ads (535-952-9291), Meta Ads (act_311851291), ML seller 50816240 (R$249k). Quer per-user config por plataforma.
+Frustra com push direto na main sem branch. Exige criar branch e testar lint/typecheck local antes de commitar. Quando erro, quer correcao rapida sem enrolacao. Prefere ver dados reais funcionando do que status falso/simulado.
+§
+ML seller CARCREW FAB (seller_id 50816240) - 2459 vendas, 238 anuncios, token ML ativo via APP_USR refresh.
