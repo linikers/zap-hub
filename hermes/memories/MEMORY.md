@@ -6,10 +6,14 @@ Chat individual por user (userId). ADMIN ve todos historicos, outros veem so os 
 §
 MarketingOS: v1.7.0. Footer sidebar. MANAGER=ADMIN sem usuarios/whatsapp/pricing. CI: lint+type-check+build. Deploy VPS via self-hosted runner. Login admin@marketingos.com/admin123. OpenCode Go provider, deepseek-v4-flash com fallback reasoning_content→content. OPENCODE_API_KEY no systemd.
 §
-PUSH: lint+type-check+build+test LOCAL antes de push. CI vermelho = falha minha. ML token: MERCADO_LIVRE_REFRESH_TOKEN no systemd, não no ads-credentials.json. carregarConfig() merge JSON + env.
+PUSH: lint+type-check+build+test LOCAL antes de push (build force nos pacotes). CI vermelho = falha minha. Lint empty catch: precisa eslint-disable-next-line (comentario nao resolve). ML token: MERCADO_LIVRE_REFRESH_TOKEN no systemd, não no ads-credentials.json. carregarConfig() merge JSON + env.
 §
-Workflow: branch → PR → CI verde → merge. NUNCA push direto pra main. SEMPRE verificar lint + type-check + build + testes ANTES de push. Build force (npm run build nos pacotes modificados) pra garantir sem cache. NUNCA reportar "pronto" com CI vermelho. Lint empty catch: comentario nao resolve no-empty, precisa de eslint-disable-next-line.
+Taiff: catálogo S3/CloudFront; migration segura: hasColumn() antes de addColumn().
 §
-Taiff Connect: produto catálogo S3/CloudFront (taiff-produtos-midia, digsnzaapp4io.cloudfront.net). Campos: codigo_produto, nome_comercial, uso, status, descricao (products) + tipo_arquivo (imagem/ficha_tecnica/manual/logo/video), nome_arquivo_original (product_images). DevOps EKS. Migration segura: hasColumn() antes de addColumn().
+Marketing OS landing: public/*.html só com extensão; CSS inline >10KB quebra build Vercel → MUI sx.
 §
-Marketing OS landing page: HTML em public/ é servido em /nome.html (com extensão), não /nome. Para URL sem extensão, usar Next.js page em src/pages/nome.tsx. CSS inline >10KB no <style> tag pode quebrar build Vercel — preferir MUI sx props. Deploy hook Vercel pode ficar PENDING sem avançar → deploy manual pelo dashboard resolve.
+MarketingOS Ads: Meta v21 usa OUTCOME_* (VENDAS→OUTCOME_SALES, LEADS→OUTCOME_LEADS, TRAFEGO→OUTCOME_TRAFFIC, ENGAJAMENTO→OUTCOME_ENGAGEMENT) + is_adset_budget_sharing_enabled=false obrigatório. Google API=v21 (v18-20 deprecadas), dev token só p/ contas de teste. 413: nginx 10m + express 15mb (servidor). Usuário abre PR sozinho quando decide que acabou.
+§
+AutoHedge cron: OPENCODE_API_KEY placeholder aborta run.py; usar scripts/cron_run_trade.py; runpy.run_path não seta sys.path[0].
+§
+Relatorio HBS (deltasge): azkaban manda grupoNotas 'Base Nacional Comum'/'Parte Diversificada' (padrão modelo1Fundamental, NÃO áreas). historicoEscolar.css compartilhado c/ modelo1 → só regras aditivas escopadas #modelo-187-*. Texto vertical: .vertical-text + span (span herda 8pt global). Usuário: análise antes de alterar, mudanças cirúrgicas (só hbs+css), testa em outra máquina.
