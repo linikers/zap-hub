@@ -14,6 +14,6 @@ Marketing OS landing: public/*.html só com extensão; CSS inline >10KB quebra b
 §
 MarketingOS Ads: Meta v21 usa OUTCOME_* (VENDAS→OUTCOME_SALES, LEADS→OUTCOME_LEADS, TRAFEGO→OUTCOME_TRAFFIC, ENGAJAMENTO→OUTCOME_ENGAGEMENT) + is_adset_budget_sharing_enabled=false obrigatório. Google API=v21 (v18-20 deprecadas), dev token só p/ contas de teste. 413: nginx 10m + express 15mb (servidor). Usuário abre PR sozinho quando decide que acabou.
 §
-AutoHedge cron: OPENCODE_API_KEY placeholder aborta run.py; usar scripts/cron_run_trade.py; runpy.run_path não seta sys.path[0].
+AutoHedge cron: key real no .env (01/08/2026) → run.py --trade direto; se placeholder, scripts/cron_run_trade.py; runpy.run_path não seta sys.path[0].
 §
 Relatorio HBS (deltasge): azkaban manda grupoNotas 'Base Nacional Comum'/'Parte Diversificada' (padrão modelo1Fundamental, NÃO áreas). historicoEscolar.css compartilhado c/ modelo1 → só regras aditivas escopadas #modelo-187-*. Texto vertical: .vertical-text + span (span herda 8pt global). Usuário: análise antes de alterar, mudanças cirúrgicas (só hbs+css), testa em outra máquina.
