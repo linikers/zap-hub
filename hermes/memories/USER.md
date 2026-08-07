@@ -14,4 +14,4 @@ Admin Mkt OS + CarCrew suspen ar. ML seller 50816240 (R$249k, 2459 vendas). Goog
 §
 Frustra com push direto na main sem branch. Exige criar branch e testar lint/typecheck local antes de commitar. Quando erro, quer correcao rapida sem enrolacao. Prefere ver dados reais funcionando do que status falso/simulado.
 §
-ML seller CARCREW FAB (seller_id 50816240) - 2459 vendas, 238 anuncios, token ML ativo via APP_USR refresh.
+ML seller CARCREW FAB 50816240: 2585 vendas, 241 anuncios, token APP_USR ativo.
