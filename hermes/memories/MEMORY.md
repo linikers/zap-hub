@@ -12,6 +12,6 @@ AutoHedge cron: key no .env → run.py --trade direto. portfolio/index.json: cha
 §
 Relatorio HBS (deltasge): azkaban manda grupoNotas 'Base Nacional Comum'/'Parte Diversificada' (padrão modelo1Fundamental, NÃO áreas). historicoEscolar.css compartilhado c/ modelo1 → só regras aditivas escopadas #modelo-187-*. Texto vertical: .vertical-text + span (span herda 8pt global). Usuário: análise antes de alterar, mudanças cirúrgicas (só hbs+css), testa em outra máquina.
 §
-Taiff: RabbitMQ EKS ok; rollback .rabbit-rollback.txt. Feitos: #130 BLE webhook, #131 owner_hash HMAC, #132 logs (dispositivo+IP), #133 Sticky MERGED+TESTADO (S3 taiff-produtos-midia; anexos até 3; BLE 0xa2/0xa3/0xa4/0xba; AWS no helm). Foto perfil = PVC local (não S3). Chat #134 agente Supabase (AGENT_API_KEY/AGENT_ID no GH). Pendente #96. Backend não fala BLE.
+Taiff: RabbitMQ EKS ok. Sticky MERGED (S3, BLE 0xa2-0xba). Foto perfil=PVC local. Chat Supabase (AGENT_API_KEY/AGENT_ID); chat só no APP, dash é painel admin. Frontend: PR #18 (workflow EKS) e #19 (PipeLine→legacy/) ABERTOS; lint auth corrigido; pendente DevOps: habilitar Actions, secrets AWS por-repo, ECR taiff-connect-front, DNS dev.taiff-connect.com+TLS. Backend intocado. Backend não fala BLE.
 §
 linikers.cloud (com 'ni', NÃO linkers). Verificação domínio (Google/FB) no _app.tsx (não _document.jsx). Meta app 1569613858007188 modo DEV bloqueia anúncio (1885183); BSide page 1244998568955101, business 1729045410508773.
