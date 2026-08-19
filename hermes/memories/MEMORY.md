@@ -14,6 +14,8 @@ Foto: api.taiff-connect.com.br/uploads/... Sticky MERGED (S3, BLE 0xa2-0xba). Ba
 §
 linikers.cloud (com 'ni', NÃO linkers). Verificação domínio (Google/FB) no _app.tsx (não _document.jsx). Meta app 1569613858007188 modo DEV bloqueia anúncio (1885183).
 §
-Dogama: ~2.100 produtos, SEM API/CSV. Coleta assistida via preview Hermes (usuário logado); automático bloqueado (anti-bot). 50 importados; cron 6h (8a42a03559d5); credenciais config/dogama-credentials.json.
+Dogama: ~2.100 prods sem API/CSV; coleta via preview (anti-bot); 50 importados; cron 6h (8a42a03559d5); creds config/dogama-credentials.json.
 §
-CJ Dropshipping (2026-08): token em config/cj-credentials.json (fora do git); cron renova 15d (f5996e5eb231). API: getAccessToken(apiKey)/refresh/getCategory/product/list?productName=KW; QPS=1, USD. ML /products/{id}/items=dict.results.
+CJ Dropshipping (2026-08): token config/cj-credentials.json; cron 15d (f5996e5eb231). API getAccessToken/refresh/getCategory/product/list?productName=KW; QPS=1 USD; ML /products/{id}/items=dict.results.
+§
+AutoHedge (08/26): wallet ~$0.21, crons trading pausados. User quer low-cost on-chain Solana (meme->SOL auto, grid) na base AutoHedge; backtest 1º.
