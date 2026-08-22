@@ -49,8 +49,11 @@ if [ -d "$HERMES_HOME/skills" ]; then
     ocr-and-documents \
     backend-notification-service \
     debugging-hermes-tui-commands; do
-    if [ -d "$HERMES_HOME/skills/$skill" ]; then
-      cp -r "$HERMES_HOME/skills/$skill" "$BACKUP_DIR/skills/" 2>/dev/null
+    # Skills vivem em ~/.hermes/skills/<categoria>/<skill>/ — resolve via find
+    # (path plano ou aninhado, maxdepth 2)
+    skill_dir="$(find "$HERMES_HOME/skills" -maxdepth 2 -type d -name "$skill" 2>/dev/null | head -1)"
+    if [ -n "$skill_dir" ]; then
+      cp -r "$skill_dir" "$BACKUP_DIR/skills/" 2>/dev/null
       echo "  → $skill"
     fi
   done
