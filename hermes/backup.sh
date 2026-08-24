@@ -31,23 +31,14 @@ if [ -d "$HERMES_HOME/skills" ]; then
   # Lista manual pra nao copiar 500MB de skills padrao
   for skill in \
     nota-fiscal-brasileira \
-    brazilian-payment-gateways \
     twitter-algorithm-optimizer \
     content-research-writer \
     mercado-livre-clientes \
-    persona-vendedor-curso-web3 \
-    persona-assistente-nfe \
-    persona-psicologo-inner \
     xurl \
     impeccable \
-    nextjs-seo \
     nextjs-mui \
     systematic-debugging \
-    react-i18n \
-    nextjs-ai-routes \
-    nextjs-project-cleanup \
     ocr-and-documents \
-    backend-notification-service \
     debugging-hermes-tui-commands; do
     # Skills vivem em ~/.hermes/skills/<categoria>/<skill>/ — resolve via find
     # (path plano ou aninhado, maxdepth 2)
