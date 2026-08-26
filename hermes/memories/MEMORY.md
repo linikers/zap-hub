@@ -18,4 +18,4 @@ Dogama: ~2.100 prods sem API/CSV; coleta via preview (anti-bot); 50 importados; 
 §
 CJ Dropshipping (2026-08): token config/cj-credentials.json; cron 15d (f5996e5eb231). API getAccessToken/refresh/getCategory/product/list?productName=KW; QPS=1 USD; ML /products/{id}/items=dict.results.
 §
-AutoHedge (08/26): wallet ~$0.21, crons trading pausados. User quer low-cost on-chain Solana (meme->SOL auto, grid) na base AutoHedge; backtest 1º.
+AutoHedge: wallet ~$0.21, crons trading pausados.
