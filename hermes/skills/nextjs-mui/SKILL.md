@@ -558,6 +558,8 @@ Deploying Next.js from monorepos or subdirectories. Load via `skill_view(name="n
 
 Three approaches: Dashboard Root Directory (simplest, recommended for single-app subdirs), `vercel-build` script in root `package.json` (monorepo with backend), `vercel.json` buildCommand (code-as-config).
 
+> **Vercel "não builda" / CI morre no install (comum):** se `npm install` local puro falha com `ERESOLVE` (ex. `@mui/styles@5` vs React 18), é isso que mata o build do Vercel antes de começar — Vercel usa `npm install` sem flags. Fix no repo: `.npmrc` com `legacy-peer-deps=true` + `vercel.json` installCommand + GitHub Actions (lint/typecheck/build) como gate. Receita em `references/npm-eresolve-vercel-build-fix.md`.
+
 Key pitfalls: Vercel GitHub App can silently disconnect (two-step fix: dashboard + github.com/apps/vercel); Root Directory field only appears after connecting Git; Root Directory format must NOT start with `/`; Tailwind CSS v4 must be in `dependencies` not `devDependencies`; `--include=dev` needed for TypeScript types; framework detection runs BEFORE buildCommand.
 
 ## Absorbed Skills
@@ -589,6 +591,7 @@ Load via `skill_view(name="nextjs-mui", file_path="references/<filename>")`.
 | `references/dashboard-stats-api.md` | Dashboard stats API + recharts bar chart |
 | `references/global-snackbar-context.md` | Global Snackbar context |
 | `references/mongoose-strict-ts.md` | Mongoose 8 strict TypeScript getDb() helper |
+| `references/npm-eresolve-vercel-build-fix.md` | Vercel/CI build morre por ERESOLVE no npm install — fix .npmrc legacy-peer-deps + vercel.json + GH Actions gate |
 | `references/mui-v9-build-errors.md` | Exact MUI v9 TypeScript build errors with fixes |
 | `references/server-ai-api-proxy.md` | Server-side AI API proxy: Route Handler pattern for calling LLMs (DeepSeek, OpenAI, etc.) without exposing the API key |
 | `references/ai-api-proxy-routes.md` | Complete AI API route patterns: provider format differences, reasoning model quirks, structured output parsing, timeout tuning, model name mapping across providers (absorbed from nextjs-ai-routes) |

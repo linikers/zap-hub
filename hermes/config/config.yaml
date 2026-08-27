@@ -87,7 +87,7 @@ agent:
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
       your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
       >w<
-  reasoning_effort: high
+  reasoning_effort: low
   verbose: false
 terminal:
   backend: local
@@ -279,7 +279,7 @@ auxiliary:
     timeout: 60
 display:
   compact: false
-  personality: kawaii
+  personality: concise
   resume_display: full
   resume_exchanges: 10
   resume_max_user_chars: 300
@@ -330,7 +330,7 @@ display:
   tool_progress: all
 dashboard:
   theme: default
-  show_token_analytics: false
+  show_token_analytics: true
   oauth:
     client_id: ''
     portal_url: ''
