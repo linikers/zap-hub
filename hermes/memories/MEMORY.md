@@ -8,12 +8,10 @@ Lint empty catch: precisa eslint-disable-next-line. ML: ACCESS_TOKEN no systemd 
 §
 Relatorio HBS (deltasge): azkaban manda grupoNotas 'Base Nacional Comum'/'Parte Diversificada' (padrão modelo1Fundamental, NÃO áreas). historicoEscolar.css compartilhado c/ modelo1 → só regras aditivas escopadas #modelo-187-*. Texto vertical: .vertical-text + span (span herda 8pt global). Usuário: análise antes de alterar, mudanças cirúrgicas (só hbs+css), testa em outra máquina.
 §
-Foto: api.taiff-connect.com.br/uploads/... Sticky MERGED (S3, BLE 0xa2-0xba). Backend não fala BLE.
+Taiff stick user completo: owner_hash=token assinado (não id); 1º dono register auth gera hash (PR#155); access/revoke/unlink/transfer/lock endpoints prontos. ble_protocol JÁ tem lock 0xA0-0xA5 (não precisa FW). Expiração 24h node-cron.
 §
 linikers.cloud (com 'ni', NÃO linkers). Verificação domínio (Google/FB) no _app.tsx (não _document.jsx). Meta app 1569613858007188 modo DEV bloqueia anúncio (1885183).
 §
 Dogama: ~2.100 prods sem API/CSV; coleta via preview (anti-bot); cron 6h (8a42a03559d5); creds config/dogama-credentials.json.
 §
 CJ Dropshipping (2026-08): token config/cj-credentials.json; cron 15d (f5996e5eb231). QPS=1 USD.
-§
-AutoHedge: pausado.
