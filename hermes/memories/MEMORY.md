@@ -2,7 +2,7 @@ User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular �
 §
 Chat individual por user (userId). ADMIN ve todos historicos, outros veem so os seus.
 §
-MarketingOS: CI lint+type-check+build. Deploy VPS self-hosted runner. OpenCode Go, deepseek-v4-flash fallback reasoning_content→content. OPENCODE_API_KEY no systemd. Commerce: usuário SELLER na Shopee (app Open Platform Seller criado, credenciais pendentes); publicar exige confirmação explícita. PR #60 mergeou taxas Shopee 14%+6% (config/commerce-pricing.json). 28 APPROVED (21 Dogama chinelos + 7 AliExpress ship-BR). Fornecedor SEXSHOP_ATACADAO (ATACADO, CNPJ DOPE ATACADISTA) com 60 DISCOVERED. 9 medianas Shopee reais em tmp-dogama/mediana-tipo.json (vibrador_bullet R$21,99, vibrador_golfinho R$22, lubrificante R$21,44, baralho_erotico R$25,99 etc).
+MarketingOS: CI lint+type-check+build. Deploy VPS self-hosted runner. OpenCode Go, deepseek-v4-flash fallback reasoning_content→content. OPENCODE_API_KEY no systemd. Commerce: usuário SELLER na Shopee (Open Platform Seller, credenciais pendentes); publicar exige confirmação explícita; taxas 14%+6%. Fornecedor SEXSHOP_ATACADAO (ATACADO, CNPJ atacadista) c/ 60 DISCOVERED.
 §
 Lint empty catch: precisa eslint-disable-next-line. ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
@@ -15,3 +15,5 @@ linikers.cloud (com 'ni', NÃO linkers). Verificação domínio (Google/FB) no _
 Dogama: ~2.100 prods sem API/CSV; coleta via preview (anti-bot); cron 6h (8a42a03559d5); creds config/dogama-credentials.json.
 §
 CJ Dropshipping (2026-08): token config/cj-credentials.json; cron 15d (f5996e5eb231). QPS=1 USD.
+§
+gh CLI: `gh pr edit` (GraphQL) falha se token sem scope read:org (erro 'login field requires read:org'). Usar REST: `gh api -X PATCH repos/O/R/pulls/N -f title=... -f base=...` p/ title/body/base de PR.
