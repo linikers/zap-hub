@@ -2,7 +2,7 @@ FRUSTRACAO: 'pqp','mentiroso','viado'=parar, admitir erro na hora, CORRIGIR, nao
 §
 Não tolera redundância, teoria, sugestões genéricas. Quer dados reais (blockchain, wallet, backtest 90+ dias). "De onde vc tirou isso?" = sinal de alerta.
 §
-Workflow merge: branch→PR→CI→merge. Se merge ja feito, fix direto na main (sem PR novo). Rodar lint+type-check+build LOCAL antes.
+Pos-merge, fix vai em PR novo da main (nao push direto).
 §
 Frustra: comandos lentos, deploy que nao生效, promessas sem teste, PR paralelo quando merge ja feito.
 §

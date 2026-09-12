@@ -8,7 +8,7 @@ Lint empty catch: precisa eslint-disable-next-line. ML: ACCESS_TOKEN no systemd 
 §
 Relatorio HBS (deltasge): azkaban manda grupoNotas 'Base Nacional Comum'/'Parte Diversificada' (padrão modelo1Fundamental, NÃO áreas). historicoEscolar.css compartilhado c/ modelo1 → só regras aditivas escopadas #modelo-187-*. Texto vertical: .vertical-text + span (span herda 8pt global). Usuário: análise antes de alterar, mudanças cirúrgicas (só hbs+css), testa em outra máquina.
 §
-Taiff stick user completo: owner_hash=token assinado (não id); 1º dono register auth gera hash (PR#155); access/revoke/unlink/transfer/lock endpoints prontos. ble_protocol JÁ tem lock 0xA0-0xA5 (não precisa FW). Expiração 24h node-cron.
+Taiff stick user: owner_hash=token assinado (não id); 1º dono register auth gera hash; access/revoke/unlink/transfer/lock prontos. ble lock 0xA0-0xA5 já existe. Expiração 24h node-cron.
 §
 linikers.cloud (com 'ni'). Verificação domínio no _app.tsx; Meta app 1569613858007188 modo DEV bloqueia anúncio.
 §
@@ -16,6 +16,8 @@ Dogama: ~2.1k prods sem API; coleta via preview (anti-bot); cron 6h (8a42a03559d
 §
 CJ Dropshipping: token config/cj-credentials.json; cron 15d (f5996e5eb231). QPS=1.
 §
-gh CLI: `gh pr edit` (GraphQL) falha se token sem scope read:org (erro 'login field requires read:org'). Usar REST: `gh api -X PATCH repos/O/R/pulls/N -f title=... -f base=...` p/ title/body/base de PR.
+gh CLI: `gh pr edit` (GraphQL) falha sem scope read:org → editar via REST `gh api -X PATCH repos/O/R/pulls/N -f title=...`.
 §
 Taiff admin: elevação p/ ADMIN é SÓ no banco via create-admin.ts (register só cria EXTERNAL). dbPassword RDS prod não versionado (injetado no deploy) → sem ele não crio.
+§
+Taiff: hair_type/tipoFio (liso/ondulado/crespo) + device_events.temperatura_c; PG local p/ validar migration: taiff-pg-tmp:5434.
