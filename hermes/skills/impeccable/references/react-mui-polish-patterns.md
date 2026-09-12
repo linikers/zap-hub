@@ -617,51 +617,13 @@ Before final commit, run through:
 
 ## External Widget Embeds in Dark Themes
 
-Third-party embed widgets (Pinterest boards, YouTube players, Spotify, Twitter cards) ship their own CSS with light backgrounds. On a dark-themed MUI site, the widget's white/light background creates a harsh contrast break and often makes embedded UI controls invisible.
+... (existing content remains)
 
-### Pattern: White Background Wrapper
+## Prisma Schema Pitfalls (monorepo context)
 
-Wrap the embed in a `<Box>` with explicit white background:
+Silent schema-validation failures that pass TS syntax but fail `prisma validate` or `prisma generate`:
 
-```tsx
-<Paper elevation={0} sx={{ border: "1px solid", borderColor: "divider" }}>
-  <Typography sx={{ fontFamily: "monospace", color: "primary.main", mb: 2 }}>
-    ▸ Inspiration Board
-  </Typography>
-  <Box sx={{ bgcolor: "#ffffff", borderRadius: 2, p: 2, minHeight: 400 }}>
-    {/* Pinterest / YouTube / Spotify embed goes here */}
-  </Box>
-</Paper>
-```
-
-Key rules:
-- Outer card uses the site's theme (glassmorphism, dark border)
-- Inner `<Box>` forces `bgcolor: "#ffffff"` — the widget's natural habitat
-- `borderRadius` and `padding` create breathing room between embed and wrapper
-- `minHeight` prevents layout shift while third-party script loads
-
-### Pinterest embed
-
-Load `pinit.js` via `useEffect` to avoid SSR hydration mismatch:
-```tsx
-useEffect(() => {
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.async = true;
-  script.src = "https://assets.pinterest.com/js/pinit.js";
-  document.body.appendChild(script);
-  return () => { document.body.removeChild(script); };
-}, []);
-```
-
-The embed markup is a simple `<a>` tag the script hydrates:
-```html
-<a data-pin-do="embedBoard"
-   data-pin-board-width="800"
-   data-pin-scale-height="400"
-   data-pin-scale-width="80"
-   href="https://www.pinterest.com/username/board-name/" />
-```
-
-This pattern generalizes: the wrapper provides the correct background, the embed lives inside without CSS conflicts.
-- [ ] External widget embeds (Pinterest, YouTube, Spotify) wrapped in white background box on dark themes to prevent text/UI readability issues from the embed's light-theme content
+- **`model X { ... )` instead of `model X { ... }`** — closing paren instead of brace. Prisma 6 rejects every line after it as "invalid keyword." The error is reported for EVERY line of the model, not just the closing line. Check the last character of the model block first.
+- **`Float? @db.Decimal(10, 2)`** — in Prisma 6, `Float` is no longer compatible with `@db.Decimal`. Must use `Decimal? @db.Decimal(10, 2)` instead. Each affected field generates its own validation error.
+- **`@ts-nocheck` in a linted project** — `@typescript-eslint/ban-ts-comment` bans this. For pre-existing TypeScript errors in files you didn't create, use file-level `/* eslint-disable @typescript-eslint/no-explicit-any */` instead, or fix the actual type annotations.
+- **Path mappings in child tsconfig override root** — if a child `tsconfig.json` adds its own `paths` block, it overrides ALL paths from the root `tsconfig.json`. Always add new paths to the root tsconfig and keep child tsconfigs clean (extends-only, no paths).

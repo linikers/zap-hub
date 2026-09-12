@@ -177,6 +177,10 @@ When polishing a React + MUI project, load `references/react-mui-polish-patterns
 
 When working on the CarCrew Suspensões e-commerce project (`github.com/linikers/carCrewCommerce`), load `references/carcrew-commerce.md`. It documents the brand's specific design tokens, hexagonal logo component specs, header layout, MUI v9 quirks, the banner system (Prisma schema, API, how to add image banners), and navigation patterns (?cat=slug routing).
 
+### Marketing OS Dashboard Reference
+
+When working on the Marketing OS dashboard (`github.com/linikers/hermes-marketing-orchestrator`), load `references/marketing-os-dashboard.md`. It documents the product register, scene sentence, Indigo + zinc dark palette, Inter typography, sidebar layout, and component patterns specific to this ongoing project.
+
 ### Free Banner Generation Reference
 
 When generating banners programmatically (for any project), load `references/free-banner-generation.md`. It documents the free toolchain: Pollinations.ai for backgrounds, rembg for subject extraction, and PIL for compositing — plus pitfalls, quality tiers, and deployment steps.

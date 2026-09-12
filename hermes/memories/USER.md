@@ -1,17 +1,17 @@
-Dev full-stack Car Crew Garage. Windows/PowerShell. Português informal, ação direta. Pragmático — aceita "NÃO testado" honesto, odeia over-engineering. Issues pra features, PR imediato com diff/stat descritivo. Prefere PostgreSQL (não JSON).
+FRUSTRACAO: 'pqp','mentiroso','viado'=parar, admitir erro na hora, CORRIGIR, nao justificar. NUNCA prometer sem testar fluxo completo (API+dash+dados).
 §
-Nome: liniker, email: linikers@hotmail.com. Git config ajustado pra isso.
+Não tolera redundância, teoria, sugestões genéricas. Quer dados reais (blockchain, wallet, backtest 90+ dias). "De onde vc tirou isso?" = sinal de alerta.
 §
-Ação direta, português informal. Não gosta de confirmações longas. Quando erro, reconhecer rápido e corrigir. Prefere self-service, aceita entregas parciais e "NÃO testado" honesto.
+Pos-merge, fix vai em PR novo da main (nao push direto).
 §
-PRs: descritivos (mudou + testado vs não testado), diff/stat antes. Aceita entregas parciais.
+Frustra: comandos lentos, deploy que nao生效, promessas sem teste, PR paralelo quando merge ja feito.
 §
-Banners: NUNCA gerar veículo com IA (Pollinations/SDXL). Usar foto real do usuário + rembg pra fundo. Aprovou estilo: logo hex esquerda + tagline + veículo ação direita.
+AutoHedge: quando pergunta "por que caiu?", responder CAUSA primeiro (cron sumiu/servidor travou). Depois sugerir mudanças. Prefere análise agressiva (1h) p/ sair do negativo. Fear Strategy substituiu MA Bounce. Dashboard 9120 com watchdog a cada 5min.
 §
-Landing pages e páginas novas (FAQ, Off-Road) precisam de link visível no menu ou footer — URL direta não basta. Categorias no nav redirecionam pra home com ?cat=slug.
+Erro: admitir na hora e corrigir. Nao justificar.
 §
-Curso ERC20 Token Lab: ecr20ttk.vercel.app, admin admin1234. Pix/BTC estático, aprovação manual.
+Admin Mkt OS + CarCrew suspen ar. ML seller 50816240 (R$249k, 2459 vendas). Google Ads 535-952-9291, Meta act_311851291. Quer config por user + dash separado.
 §
-Pragmático, foco em resultado prático > complexidade técnica. Prefere soluções funcionais sem depender de terceiros quando possível. Gosta de ação direta sem firula.
+Frustra com push direto na main sem branch. Exige criar branch e testar lint/typecheck local antes de commitar. Quando erro, quer correcao rapida sem enrolacao. Prefere ver dados reais funcionando do que status falso/simulado.
 §
-User: ao analisar rede social, scrollar e verificar conteudo antes de afirmar que nao tem posts — nao confiar no header da pagina.
+ML seller CARCREW FAB 50816240: 2585 vendas, 241 anuncios, token APP_USR ativo.
