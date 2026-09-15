@@ -20,4 +20,4 @@ gh CLI: `gh pr edit` (GraphQL) falha sem scope read:org → editar via REST `gh 
 §
 Taiff admin: elevação p/ ADMIN é SÓ no banco via create-admin.ts (register só cria EXTERNAL). dbPassword RDS prod não versionado (injetado no deploy) → sem ele não crio.
 §
-Taiff: hair_type/tipoFio (liso/ondulado/crespo) + device_events.temperatura_c; PG local p/ validar migration: taiff-pg-tmp:5434.
+Taiff: hair_type/tipoFio + device_events.temperatura_c = WIP em stash (não pushado/merged). PG local: taiff-pg-tmp:5434.
