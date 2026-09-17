@@ -8,10 +8,10 @@ Frustra: comandos lentos, deploy que nao生效, promessas sem teste, PR paralelo
 §
 AutoHedge: quando pergunta "por que caiu?", responder CAUSA primeiro (cron sumiu/servidor travou). Depois sugerir mudanças. Prefere análise agressiva (1h) p/ sair do negativo. Fear Strategy substituiu MA Bounce. Dashboard 9120 com watchdog a cada 5min.
 §
-Erro: admitir na hora e corrigir. Nao justificar.
-§
 Admin Mkt OS + CarCrew suspen ar. ML seller 50816240 (R$249k, 2459 vendas). Google Ads 535-952-9291, Meta act_311851291. Quer config por user + dash separado.
 §
 Frustra com push direto na main sem branch. Exige criar branch e testar lint/typecheck local antes de commitar. Quando erro, quer correcao rapida sem enrolacao. Prefere ver dados reais funcionando do que status falso/simulado.
 §
 ML seller CARCREW FAB 50816240: 2585 vendas, 241 anuncios, token APP_USR ativo.
+§
+Liniker Ferreira dos Santos, 38, Maringá/PR; dev full-stack (Next/Node/Web3); Delta Sistemas (deltasge) desde jul/2023; linikers.cloud; github.com/linikers
