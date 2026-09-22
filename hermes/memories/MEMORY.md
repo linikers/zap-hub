@@ -2,17 +2,17 @@ User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular �
 §
 MarketingOS: CI lint+type-check+build. Deploy VPS self-hosted runner. OpenCode Go, deepseek-v4-flash fallback reasoning_content→content. OPENCODE_API_KEY no systemd. Commerce: SELLER Shopee (credenciais pendentes); publicar exige confirmação; taxas 14%+6%. Fornecedor SEXSHOP_ATACADAO (ATACADO) c/ 60 DISCOVERED.
 §
-Lint empty catch: precisa eslint-disable-next-line. ML: ACCESS_TOKEN no systemd + self-healing 401.
+ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
 Relatorio HBS (deltasge): detalhes na skill relatorios-hbs. Exige plano/analise ANTES de alterar; testa em outra maquina.
 §
 Taiff stick: owner_hash=token assinado (não id); access/revoke/unlink/transfer/lock prontos; ble lock 0xA0-0xA5; expira 24h.
 §
-Ads (18/09/26): Meta act_311851291 ativa mas SEM Pagina Facebook (bloqueia anuncio real); Google 535-952-9291 no nivel Teste do projeto Cloud linikers-portfolio (Explorer em analise). linikers.cloud com 'ni'.
+Ads: Meta act_311851291 ativa (sem Pagina FB → sem anuncio real); Google 535-952-9291 nivel Teste em linikers-portfolio (Explorer em analise; watchdog cron a71d019b5232 avisa no WhatsApp). Conversao do site: acao 'Contato' (page-load) medindo linikers.cloud/ir/whatsapp. linikers.cloud com 'ni'.
 §
-Dogama: ~2.1k prods sem API, coleta via preview, cron 6h; creds config/dogama-credentials.json.
+Dogama: ~2.1k prods sem API, coleta via preview, cron 6h; creds config/.
 §
-CJ Dropshipping: token config/cj-credentials.json; cron 15d. QPS=1.
+CJ Dropshipping: token config/cj-credentials.json; cron 15d.
 §
 gh CLI: `gh pr edit` falha sem scope read:org → usar REST `gh api -X PATCH repos/O/R/pulls/N`.
 §
