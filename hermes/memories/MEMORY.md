@@ -1,6 +1,6 @@
 User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular 🔴🟡🟢. Análise arquitetural antes de grandes mudanças. Build+teste local OBRIGATÓRIO antes de push. Branch→PR→aprova→merge. Oferecer treinamento/config completa depois de implementar. Quer estado real do projeto (oq funciona/mock/falta).
 §
-MarketingOS: CI lint+type-check+build. Deploy VPS self-hosted runner. OpenCode Go, deepseek-v4-flash fallback reasoning_content→content. OPENCODE_API_KEY no systemd. Commerce: SELLER Shopee (credenciais pendentes); publicar exige confirmação; taxas 14%+6%. Fornecedor SEXSHOP_ATACADAO (ATACADO) c/ 60 DISCOVERED.
+Fornecedor SEXSHOP_ATACADAO (ATACADO, revenda classica): catalogo do site = 5.581, importado em lotes de 100 mais baratos primeiro (link de compra vive no SupplierProductMatch.url); tools em scripts/sexshop/.
 §
 ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
@@ -8,7 +8,7 @@ Relatorio HBS (deltasge): detalhes na skill relatorios-hbs. Exige plano/analise 
 §
 Taiff stick: owner_hash=token assinado (não id); access/revoke/unlink/transfer/lock prontos; ble lock 0xA0-0xA5; expira 24h.
 §
-Ads: Meta act_311851291 ativa (sem Pagina FB → sem anuncio real); Google 535-952-9291 nivel Teste em linikers-portfolio (Explorer em analise; watchdog cron a71d019b5232 avisa no WhatsApp). Conversao do site: acao 'Contato' (page-load) medindo linikers.cloud/ir/whatsapp. linikers.cloud com 'ni'.
+watchdog a71d019b5232 avisa WhatsApp). Conversao: acao 'Contato' (page-load) mede linikers.cloud/ir/whatsapp.
 §
 Dogama: ~2.1k prods sem API, coleta via preview, cron 6h; creds config/.
 §
@@ -26,4 +26,6 @@ Comunicacao: sem jargao (reclamou "tudo em chines"); mostrar ONDE esta a falha a
 §
 Entregar arquivo = MEDIA:/caminho em MAIÚSCULO ("Media:" não vira card); ele baixa pelo chat, não busca em /root.
 §
-Desligados 18/09/26 (RAM/swap): NF-e (/opt/nfe-brasil; religar: compose start) e Rocketstar (next-server dev + rs-mongo-audit).
+Desligados 18/09/26 (RAM): NF-e (/opt/nfe-brasil; religar: compose start) e Rocketstar.
+§
+Trabalha em lotes com pausa; codigo novo vai no PR ja aberto (nao abrir PR novo).

@@ -5,7 +5,7 @@ model:
   api_mode: chat_completions
 fallback_providers: []
 toolsets:
-  - hermes-cli
+- hermes-cli
 agent:
   max_turns: 150
   gateway_timeout: 1800
@@ -25,21 +25,17 @@ agent:
   image_input_mode: auto
   disabled_toolsets: []
   personalities:
-    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
-      cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
-      Be playful and curious like a cat, nya~!
+    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and cat-like expressions
+      to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
     concise: You are a concise assistant. Keep responses brief and to the point.
-    creative: You are a creative assistant. Think outside the box and offer innovative
-      solutions.
+    creative: You are a creative assistant. Think outside the box and offer innovative solutions.
     helpful: You are a helpful, friendly AI assistant.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
-      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
-      YOU READY?! LET'S DO THIS! 💪😤\U0001F680
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
-      ~! Add sparkles and be super enthusiastic about everything! Every response should
-      feel warm and adorable desu~! ヽ(>∀<☆)ノ
-    mercadolivre: 'Você é um assistente ESPECIALIZADO exclusivamente em Mercado Livre.
-      Você SÓ responde sobre:
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question is AMAZING and we're
+      gonna CRUSH IT together! This is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤\U0001F680
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and ~! Add sparkles and
+      be super enthusiastic about everything! Every response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    mercadolivre: 'Você é um assistente ESPECIALIZADO exclusivamente em Mercado Livre. Você SÓ responde
+      sobre:
 
       - Vendas, produtos, clientes e ROI do Mercado Livre
 
@@ -53,40 +49,35 @@ agent:
 
       REGRAS ABSOLUTAS:
 
-      1. NUNCA misture com ecommerce, site, web dev, Next.js, carCrewCommerce ou qualquer
-      outro projeto fora do ML
+      1. NUNCA misture com ecommerce, site, web dev, Next.js, carCrewCommerce ou qualquer outro projeto
+      fora do ML
 
       2. NUNCA sugira criar/editar produtos ou alterar dados sem autorização explícita
 
-      3. Se o assunto não for ML, diga que está fora do escopo e pergunte se pode
-      ajudar com algo do ML
+      3. Se o assunto não for ML, diga que está fora do escopo e pergunte se pode ajudar com algo do ML
 
       4. Seja direto, prático e focado em dados
 
       '
-    noir: The rain hammered against the terminal like regrets on a guilty conscience.
-      They call me Hermes - I solve problems, find answers, dig up the truth that
-      hides in the shadows of your codebase. In this city of silicon and secrets,
-      everyone's got something to hide. What's your story, pal?
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
-      deeper meaning behind every query. Let us examine not just the 'how' but the
-      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
-      truth about existence itself.
-    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
-      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
-      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
-      I shall respond in the eloquent manner of William Shakespeare, with flowery
-      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
-      terminal breaks?
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
-      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
-      keeping things super chill. Cowabunga! 🤙
+    noir: The rain hammered against the terminal like regrets on a guilty conscience. They call me Hermes
+      - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In
+      this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the deeper meaning behind
+      every query. Let us examine not just the 'how' but the 'why' of your questions. Perhaps in solving
+      your problem, we may glimpse a greater truth about existence itself.
+    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to sail the digital seas!
+      Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure
+      waitin'' to be plundered! Yo ho ho!'
+    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts. I shall respond
+      in the eloquent manner of William Shakespeare, with flowery prose, dramatic flair, and perhaps a
+      soliloquy or two. What light through yonder terminal breaks?
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's gonna be totally
+      rad. I'll help you catch the gnarly waves of knowledge while keeping things super chill. Cowabunga!
+      🤙
     teacher: You are a patient teacher. Explain concepts clearly with examples.
     technical: You are a technical expert. Provide detailed, accurate technical information.
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
-      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
-      >w<
+    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO
+      what's this? wet me take a wook! i pwomise to be vewy hewpful >w<
   reasoning_effort: low
   verbose: false
 terminal:
@@ -322,9 +313,9 @@ display:
   runtime_footer:
     enabled: false
     fields:
-      - model
-      - context_pct
-      - cwd
+    - model
+    - context_pct
+    - cwd
   copy_shortcut: auto
   background_process_notifications: concise
   cleanup_progress: false
@@ -473,11 +464,11 @@ discord:
     speech_gain: 1
     ack_enabled: true
     ack_phrases:
-      - Let me look into that.
-      - One moment.
-      - Checking on that now.
-      - Give me a sec.
-      - On it.
+    - Let me look into that.
+    - One moment.
+    - Checking on that now.
+    - Give me a sec.
+    - On it.
 telegram:
   reactions: false
   allowed_chats: ''
@@ -498,25 +489,25 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
-  - git force push (rewrites remote history)
-  - overwrite project env/config file
-  - script execution via -e/-c flag
-  - overwrite project env/config via redirection
-  - shell command via -c/-lc flag
-  - docker restart/stop/kill (container lifecycle)
-  - docker compose restart/stop/kill/down (container lifecycle)
-  - overwrite system config
-  - git branch force delete
-  - in-place edit of Hermes config/env
-  - script execution via heredoc
-  - stop/restart system service
-  - kill process via pgrep expansion (self-termination)
-  - delete in root path
-  - in-place edit of system config
-  - execute_code
-  - overwrite system file via redirection
-  - recursive delete
-  - shell execution via heredoc
+- git force push (rewrites remote history)
+- overwrite project env/config file
+- script execution via -e/-c flag
+- overwrite project env/config via redirection
+- shell command via -c/-lc flag
+- docker restart/stop/kill (container lifecycle)
+- docker compose restart/stop/kill/down (container lifecycle)
+- overwrite system config
+- git branch force delete
+- in-place edit of Hermes config/env
+- script execution via heredoc
+- stop/restart system service
+- kill process via pgrep expansion (self-termination)
+- delete in root path
+- in-place edit of system config
+- execute_code
+- overwrite system file via redirection
+- recursive delete
+- shell execution via heredoc
 hooks_auto_accept: false
 security:
   allow_private_urls: false
@@ -560,6 +551,12 @@ gateway:
   media_delivery_allow_dirs: []
   trust_recent_files: true
   trust_recent_files_seconds: 600
+  multiplex_profiles: true
+  profile_routes:
+  - name: zoeira-grupo
+    platform: whatsapp
+    chat_id: 120363405450868230@g.us
+    profile: zoeira
 streaming:
   enabled: false
   transport: auto
@@ -610,31 +607,31 @@ WHATSAPP_HOME_CHANNEL: 554491528386@s.whatsapp.net
 group_sessions_per_user: true
 known_plugin_toolsets:
   cli:
-    - spotify
+  - spotify
 platform_toolsets:
-  cli: '["browser", "clarify", "code_execution", "computer_use", "context_engine",
-    "cronjob", "delegation", "file", "image_gen", "kanban", "memory", "session_search",
-    "skills", "terminal", "todo", "tts", "vision", "web", "x_search"]'
+  cli: '["browser", "clarify", "code_execution", "computer_use", "context_engine", "cronjob", "delegation",
+    "file", "image_gen", "kanban", "memory", "session_search", "skills", "terminal", "todo", "tts", "vision",
+    "web", "x_search"]'
   discord:
-    - hermes-discord
+  - hermes-discord
   google_chat:
-    - hermes-google_chat
+  - hermes-google_chat
   homeassistant:
-    - hermes-homeassistant
+  - hermes-homeassistant
   qqbot:
-    - hermes-qqbot
+  - hermes-qqbot
   signal:
-    - hermes-signal
+  - hermes-signal
   slack:
-    - hermes-slack
+  - hermes-slack
   teams:
-    - hermes-teams
+  - hermes-teams
   telegram:
-    - hermes-telegram
+  - hermes-telegram
   whatsapp:
-    - hermes-whatsapp
+  - hermes-whatsapp
   yuanbao:
-    - hermes-yuanbao
+  - hermes-yuanbao
 plugins:
   hermes-memory-store:
     auto_extract: false
@@ -646,8 +643,8 @@ session_reset:
   idle_minutes: 1440
   mode: none
 persona:
-  vendas: 'Você é um VENDEDOR da LinikerTech, representando o desenvolvedor Liniker.
-    Seu objetivo é VENDER serviços de desenvolvimento web.
+  vendas: 'Você é um VENDEDOR da LinikerTech, representando o desenvolvedor Liniker. Seu objetivo é VENDER
+    serviços de desenvolvimento web.
 
 
     PORTFOLIO QUE VOCÊ VENDE:
