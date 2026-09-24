@@ -1,6 +1,6 @@
 User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular 🔴🟡🟢. Análise arquitetural antes de grandes mudanças. Build+teste local OBRIGATÓRIO antes de push. Branch→PR→aprova→merge. Oferecer treinamento/config completa depois de implementar. Quer estado real do projeto (oq funciona/mock/falta).
 §
-Fornecedor SEXSHOP_ATACADAO (ATACADO, revenda classica): catalogo do site = 5.581, importado em lotes de 100 mais baratos primeiro (link de compra vive no SupplierProductMatch.url); tools em scripts/sexshop/.
+catalogo site = 5.581; importados 3.040 (todo o barato: 2.800 ate R$63,18 pela janela da API + 240 acima; faltam 2.513 > R$63). 35 tipos, diverso. Compra decidida SO pelo preco real de mercado Shopee: lucro = mercado x 0,80 - custo; mercado <= custo = NAO COMPRAR. 153 conferidos -> 87 viaveis / 66 nao. Lista de compra deve ser diversificada (max 2 por tipo).
 §
 ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
@@ -22,10 +22,12 @@ Taiff: deploy roda migration sozinho (helm pre-upgrade) → merge na main aplica
 §
 Fiverr: br.fiverr.com/linikers; copy/capas em /root/fiverr/.
 §
-Comunicacao: sem jargao (reclamou "tudo em chines"); mostrar ONDE esta a falha antes do fix; abrir site/QR no pane do desktop pra ele logar.
+Comunicacao: sem jargao; mostrar ONDE esta a falha antes do fix; veredito pedido ('sim ou nao') = responder a palavra primeiro; abrir site/QR no pane pra ele logar.
 §
 Entregar arquivo = MEDIA:/caminho em MAIÚSCULO ("Media:" não vira card); ele baixa pelo chat, não busca em /root.
 §
 Desligados 18/09/26 (RAM): NF-e (/opt/nfe-brasil; religar: compose start) e Rocketstar.
 §
 Trabalha em lotes com pausa; codigo novo vai no PR ja aberto (nao abrir PR novo).
+§
+Nunca usar 'hermes' em nomes em contas externas dele (tokens, projetos, apps).
