@@ -1,6 +1,6 @@
 User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular 🔴🟡🟢. Análise arquitetural antes de grandes mudanças. Build+teste local OBRIGATÓRIO antes de push. Branch→PR→aprova→merge. Oferecer treinamento/config completa depois de implementar. Quer estado real do projeto (oq funciona/mock/falta).
 §
-catalogo site = 5.581; importados 3.040 (todo o barato: 2.800 ate R$63,18 pela janela da API + 240 acima; faltam 2.513 > R$63). 35 tipos, diverso. Compra decidida SO pelo preco real de mercado Shopee: lucro = mercado x 0,80 - custo; mercado <= custo = NAO COMPRAR. 153 conferidos -> 87 viaveis / 66 nao. Lista de compra deve ser diversificada (max 2 por tipo).
+catalogo: 5.581 prods (3.040 importados). Compra SO pelo preco real Shopee: lucro = mercado x 0,80 - custo; mercado <= custo = NAO COMPRAR. Lista diversificada (max 2 por tipo).
 §
 ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
@@ -31,3 +31,5 @@ Desligados 18/09/26 (RAM): NF-e (/opt/nfe-brasil; religar: compose start) e Rock
 Trabalha em lotes com pausa; codigo novo vai no PR ja aberto (nao abrir PR novo).
 §
 Nunca usar 'hermes' em nomes em contas externas dele (tokens, projetos, apps).
+§
+PR de UI: quer analise visual ANTES de aprovar (capturas nos 2 temas + leitura critica do resultado); nao aprova sem ver a tela.
