@@ -4,7 +4,7 @@ catalogo: 5.581 prods (3.040 importados). Compra SO pelo preco real Shopee: lucr
 §
 ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
-Relatorio HBS (deltasge): detalhes na skill relatorios-hbs. Exige plano/analise ANTES de alterar; testa em outra maquina.
+HBS (deltasge): plano/analise ANTES de alterar; testa em outra maquina.
 §
 Taiff stick: owner_hash=token assinado (não id); access/revoke/unlink/transfer/lock prontos; ble lock 0xA0-0xA5; expira 24h.
 §
@@ -33,3 +33,5 @@ Trabalha em lotes com pausa; codigo novo vai no PR ja aberto (nao abrir PR novo)
 Nunca usar 'hermes' em nomes em contas externas dele (tokens, projetos, apps).
 §
 PR de UI: quer analise visual ANTES de aprovar (capturas nos 2 temas + leitura critica do resultado); nao aprova sem ver a tela.
+§
+Terminal redige segredo na saida: nao julgar chave por ela (conferir no diff antes de mexer em prod).

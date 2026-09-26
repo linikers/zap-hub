@@ -4,14 +4,12 @@ Não tolera redundância, teoria, sugestões genéricas. Quer dados reais (block
 §
 Pos-merge, fix vai em PR novo da main (nao push direto).
 §
-Frustra: comandos lentos, deploy que nao生效, promessas sem teste, PR paralelo quando merge ja feito.
-§
 AutoHedge: quando pergunta "por que caiu?", responder CAUSA primeiro (cron sumiu/servidor travou). Depois sugerir mudanças. Prefere análise agressiva (1h) p/ sair do negativo. Fear Strategy substituiu MA Bounce. Dashboard 9120 com watchdog a cada 5min.
 §
-Admin Mkt OS + CarCrew suspen ar. ML seller 50816240 (R$249k, 2459 vendas). Google Ads 535-952-9291, Meta act_311851291. Quer config por user + dash separado.
+ML seller 50816240 (R$249k, 2585 vendas)
 §
-Frustra com push direto na main sem branch. Exige criar branch e testar lint/typecheck local antes de commitar. Quando erro, quer correcao rapida sem enrolacao. Prefere ver dados reais funcionando do que status falso/simulado.
-§
-ML seller CARCREW FAB 50816240: 2585 vendas, 241 anuncios, token APP_USR ativo.
+Frustra: comandos lentos, deploy que nao efetiva, promessa sem teste, push direto na main, PR paralelo quando merge ja feito. Exige branch + lint/typecheck local antes de commitar; erro = correcao rapida sem enrolacao; prefere dado real a status falso/simulado.
 §
 Liniker Ferreira dos Santos, 38, Maringá/PR; dev full-stack (Next/Node/Web3); Delta Sistemas (deltasge) desde jul/2023; linikers.cloud; github.com/linikers
+§
+UI/textos: quer EXEMPLO (mockup clicavel) ANTES de alterar; linguagem simples sem jargao — nome tecnico so em tooltip; confirma vocabulario de produto.
