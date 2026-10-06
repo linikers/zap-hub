@@ -84,7 +84,6 @@ terminal:
   docker_run_as_host_user: false
   persistent_shell: true
   lifetime_seconds: 300
-  vercel_runtime: node24
 web:
   backend: ''
   search_backend: ''
@@ -580,14 +579,19 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 48
+_config_version: 49
 MODEL: deepseek-chat
 OPENROUTER_BASE_URL: https://opencode.ai/zen/go/v1
 WHATSAPP_HOME_CHANNEL: 554491528386@s.whatsapp.net
 group_sessions_per_user: true
 known_plugin_toolsets:
   cli:
+    - homeassistant
     - spotify
+  acp:
+    - homeassistant
+  webhook:
+    - homeassistant
 platform_toolsets:
   cli: '["browser", "clarify", "code_execution", "computer_use", "context_engine", "cronjob", "delegation", "file", "image_gen", "kanban", "memory", "session_search", "skills", "terminal", "todo", "tts", "vision", "web", "x_search"]'
   discord:
@@ -616,6 +620,9 @@ plugins:
     default_trust: 0.5
     hrr_dim: 1024
     min_trust_threshold: 0.3
+  enabled:
+    - homeassistant
+  disabled: []
 session_reset:
   at_hour: 4
   idle_minutes: 1440
@@ -660,3 +667,7 @@ persona:
     10. Portfólio de referência: linikers.vercel.app/portfolio
 
     11. Forma de pagamento: Pix e BTC'
+_left_core_scoped:
+  - homeassistant
+_left_core_installed:
+  - homeassistant
