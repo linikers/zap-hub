@@ -671,3 +671,7 @@ _left_core_scoped:
   - homeassistant
 _left_core_installed:
   - homeassistant
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
