@@ -13,3 +13,5 @@ Frustra: comandos lentos, deploy que nao efetiva, promessa sem teste, push diret
 Liniker Ferreira dos Santos, 38, Maringá/PR; dev full-stack (Next/Node/Web3); Delta Sistemas (deltasge) desde jul/2023; linikers.cloud; github.com/linikers
 §
 UI/textos: quer EXEMPLO (mockup clicavel) ANTES de alterar; linguagem simples sem jargao — nome tecnico so em tooltip; confirma vocabulario de produto.
+§
+Silêncio longo incomoda ("tropeçou?"): reportar progresso parcial e seguir a fila de PRs sem pausa.

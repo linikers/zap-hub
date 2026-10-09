@@ -202,6 +202,14 @@ Primary API → Fallback RSS → Mock data chain. Allows development without API
 - `slotProps` API works in v6+ (`componentsProps` in v4/v5).
 - `ToggleButtonGroup`, `Badge`, `Tooltip`, `Chip`, `Slider` — stable API across v6-v9.
 
+## Verificação visual antes de aprovar (gate obrigatório)
+
+O dono **não aprova PR de UI sem ver a tela**: quer captura **nos dois temas** e leitura crítica do resultado — "funciona" não basta, tem que estar legível e correto no claro E no escuro. Faça a revisão ANTES de pedir aprovação e relate o que encontrou (inclusive o que corrigiu por causa dela). Receita completa (chromium headless + CDP + `vision_analyze`, sem login manual) em `references/verificacao-visual-local.md`.
+
+### Contraste no escuro: `text.disabled` e `divider` do tema NÃO servem para texto explicativo
+
+Paletas escuras normalmente trazem `text.disabled` e `divider` muito próximos do fundo (ex.: `#52525b` e `#27272a` sobre `#18181b` → ~1.8:1, divisor invisível). Um card que existe para **explicar** o número (fórmula, fonte, ressalva) fica decorativo no escuro — justo onde a informação importa. **Antes de usar `color="text.disabled"` ou `borderColor="divider"` em texto que o usuário precisa ler, leia os valores no `theme.ts`**; se forem baixos, use `text.primary` com opacidade (~0.78) na linha secundária e um `rgba(255,255,255,0.22)` próprio para o divisor no escuro (o `divider` do tema continua valendo no claro).
+
 ## MUI v9 API Changes (critical — will break builds)
 
 ### Grid component overhaul
