@@ -86,15 +86,19 @@ Zernio (https://zernio.com) e uma API unificada para 15+ plataformas.
 Cobre X, Instagram, LinkedIn, TikTok etc. Precisa de cartao de credito
 para ativar (custa $0.015/post + taxa de plataforma).
 
-### Via Browser (Gratis mas Limitado)
-O usuario pode postar manualmente pelo navegador. Automacao via
-Camoufox/Playwright e possivel mas o React do X dificulta (nao detecta
-texto inserido por JavaScript).
+### Via preview pane do desktop — o canal que funciona
+Postar/responder/seguir pelo **preview pane** do app Hermes funciona de verdade, inclusive no compositor
+React do X (o helper `drive_preview type` dispara eventos nativos; inserir `value` por JavaScript cru não
+funciona). Receita completa e pitfalls (o texto pode sair sem parágrafos ou com letras EMBARALHADAS —
+publicar, verificar o texto e, se corrompeu, deletar e repostar): skill `preview-pane-web-automation`
+(reference `x-posting-follow-reply.md`).
 
 ### Recomendacao para @hermesBigAgent
 1. Escrever o post seguindo as regras do algoritmo (acima)
-2. Postar manualmente pelo navegador (0 tweets → 2 tweets)
-3. Quando houver orcamento, configurar xurl + creditos para automatizar
+2. Publicar pelo preview pane do desktop — o API está `CreditsDepleted` e o dono definiu: "não tem api é
+   pelo navegador" (ver skill `preview-pane-web-automation`)
+3. Distribuição real da conta: reply em post grande + **follow-back em volume** (o dono autoriza seguir
+   pessoas aleatórias e perfis NSFW para ganhar seguidores de volta); post standalone rende poucas views
 
 ## Referencias
 
