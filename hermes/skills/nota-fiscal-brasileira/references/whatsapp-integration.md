@@ -100,10 +100,42 @@ curl -X POST http://localhost:3001/webhook \
   -d '{"object":"whatsapp_business_account","entry":[{"id":"1278406254494004","changes":[{"value":{"messaging_product":"whatsapp","metadata":{"display_phone_number":"NUMBER","phone_number_id":"1044220182118213"},"messages":[{"from":"5511999999999","id":"test_nfe","type":"text","text":{"body":"quero nota fiscal"}}]}}]}]}'
 ```
 
+## Enviar o PDF da nota para um destinatário (bridge local do Hermes)
+
+Com a sessão de WhatsApp já pareada no Hermes, não é preciso Cloud API nem Evolution
+API: o bridge local expõe HTTP para envio de mídia (porta 3000 por padrão).
+
+| Rota | Uso |
+|------|-----|
+| `GET  /health` | conferir `"status":"connected"` **antes** de tentar enviar |
+| `POST /send-media` | envia arquivo por caminho absoluto (imagem, vídeo, áudio, documento) |
+| `GET  /chat/<jid>` | confirma que o JID existe |
+
+```bash
+curl -s -X POST http://127.0.0.1:3000/send-media \
+  -H "Content-Type: application/json" \
+  -d '{"chatId":"5544XXXXXXXXX@s.whatsapp.net",
+       "filePath":"/root/DANFE-NFCe-<chave>.pdf",
+       "mediaType":"document",
+       "fileName":"DANFE-NFCe-<chave>.pdf",
+       "caption":"DANFE NFC-e (homologacao)"}'
+```
+
+- `chatId` é o **JID** (`<DDI><DDD><numero>@s.whatsapp.net`), não o número cru.
+- Passe `mediaType` explícito (`document` para PDF) em vez de confiar no default.
+- O arquivo é lido **do disco do servidor** pelo caminho absoluto — o bridge não aceita base64.
+- Destino precisa estar na allowlist do bridge: a linha `Allowed users:` do `bridge.log`
+  lista os JIDs aceitos. "Enviei e não chegou" costuma ser número fora dela.
+- `{"success":true,"messageId":"..."}` é o **aceite do bridge**, não a leitura pelo
+  destinatário. Informe o `messageId` ao usuário e peça confirmação no aparelho.
+  `GET /messages` é a fila de **entrada** — não serve para auditar o que saiu, e o
+  `bridge.log` é depuração de Baileys (ruidoso), não registro de envio.
+
 ## Limitações Atuais
 
-- Geração real de DANFE exige XML autorizado + weasyprint/erpbrasil — implementação
-  futura deve chamar `gerar_danfe()` da skill e enviar PDF como mídia
+- Geração real de DANFE: NF-e modelo 55 via `gerar_danfe()`; NFC-e modelo 65 via
+  `gerar_danfe_nfce()` (`references/danfe-nfce-cupom.md`). Para entregar no WhatsApp,
+  use o bridge local (seção acima).
 - Consulta SEFAZ em tempo real exige certificado A1 configurado no servidor
 - Histórico de conversa não é mantido entre mensagens (cada chamada é fresh)
 - Sandbox do Cloud API limita a 5 números de destinatários
