@@ -161,6 +161,43 @@ No extra dependencies needed — pymupdf covers split, merge, search, and text e
 
 ---
 
+## Photo of a printed table (nota fiscal, lista de separação, cupom)
+
+A phone photo of a printed table defeats a single whole-image vision pass: rows get dropped and
+adjacent columns get fused. Use this order — it is what catches the errors.
+
+1. **Rotate before reading.** A landscape document shot in a portrait frame comes in sideways.
+   Produce 90° and 270° versions with PIL (`Image.rotate(ang, expand=True)`) and extract from the
+   rotated file. Do **not** ask the model whether the image is upright — two calls on the same file
+   will contradict each other about the direction, and both still read the text. Judge by whether
+   you get a clean left-to-right column order.
+2. **Slice into overlapping bands.** A full-page read silently truncates: on a 20-row receipt the
+   whole-image pass returned only rows 13–20 and reported it as the full table. Cut into 4 horizontal
+   bands with ~40px overlap and read each one with its own question.
+3. **Read the numeric columns twice.** Once on the whole page, once on a zoomed crop of
+   price/quantity. Printed digits flip on a single pass (`5,99` came back as `15,99`); the zoom is
+   the tiebreaker, not the first answer.
+4. **Verify with arithmetic, always.** Compute `sum(price × qty)` in code and reconcile against the
+   printed TOTAL and the printed unit count. This is the only check that proves the transcription.
+5. **Never report a total you did not see printed.** If the TOTAL line is blank, say it is blank and
+   label the sum as your own calculation. Distinguish *printed* from *computed* explicitly.
+6. **State what is out of frame.** If the photo shows items 13–20 only, say so up front; do not
+   present a partial list as the whole document.
+
+**Columns fold at the footer.** The last data row and the TOTAL line sit close together, and the
+model merges them: a product's own `codigo` and `cod. fabricante` were reported as the document
+total. Every time a "total" appears, check it against the arithmetic in step 4 before believing it.
+
+**Multi-photo document test.** Before assuming two photos are two documents, check for continuity:
+continuous item numbering (1–12 then 13–20, no gap or repeat), matching unit totals, and identical
+column layout. Continuous numbering plus a unit count that reconciles is proof they are one document
+split by the camera.
+
+**Handwriting is data too.** Notes like "Paguei", check marks and signatures say whether the list is
+paid and verified. Report them separately from the printed numbers — never blend them in.
+
+---
+
 ## Notes
 
 - `web_extract` is always first choice for URLs
