@@ -196,6 +196,11 @@ split by the camera.
 **Handwriting is data too.** Notes like "Paguei", check marks and signatures say whether the list is
 paid and verified. Report them separately from the printed numbers — never blend them in.
 
+**Measure the image before passing `region`.** `vision_analyze(region=[0,0,1024,1024])` on a 1280×1280
+file inspects only the top-left quadrant — the corner you meant to check is outside the crop, and the
+answer "there is nothing there" is about the wrong area. Open with PIL, read `.size`, and build the
+crop from the real dimensions.
+
 ---
 
 ## Notes
