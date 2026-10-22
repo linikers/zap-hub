@@ -575,7 +575,7 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 50
+_config_version: 51
 MODEL: deepseek-chat
 OPENROUTER_BASE_URL: https://opencode.ai/zen/go/v1
 WHATSAPP_HOME_CHANNEL: 554491528386@s.whatsapp.net
