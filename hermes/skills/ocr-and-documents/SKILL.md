@@ -201,6 +201,22 @@ file inspects only the top-left quadrant — the corner you meant to check is ou
 answer "there is nothing there" is about the wrong area. Open with PIL, read `.size`, and build the
 crop from the real dimensions.
 
+### Remover marca d'água de canto (antes de a foto virar avatar/catálogo)
+
+1. **Ache a faixa real da marca, não a mais clara.** Um heuristic de luminância pega só as linhas mais
+   brilhantes do texto e subestima a altura: no mesmo arquivo o corte "seguro" de 52 px a partir do
+   achado ainda deixava metade do texto visível. Varra a faixa inferior com limiar frouxo (`max(rgb)>120`
+   e baixa saturação) e **arredonde para cima** ao definir o corte — 150–200 px de folga custa pouco e
+   evita refazer.
+2. **Corte quadrado e reescale.** Cortar só a base deixa a imagem retangular; para avatar, corte um
+   quadrado (centralizado na horizontal, mantendo o topo) e `resize` para o lado que a plataforma usa.
+3. **Verifique no RESULTADO, não na conta.** Recorte a faixa inferior do arquivo final, amplie 2× e
+   pergunte de novo antes de entregar. Uma passada de visão no resultado encontrou `Mate Al` (marca
+   cortada no meio) quando o cálculo dizia que estava limpo — e a segunda entrega era o que o dono ia usar.
+
+Marca d'água de gerador (ex.: `Meta AI`) é rótulo de proveniência: informe que ela existe e qual o custo
+estético de mantê-la, corte se o dono pedir, e não a remova por conta própria.
+
 ---
 
 ## Notes

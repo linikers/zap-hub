@@ -296,6 +296,37 @@ Auto-wraps on narrow viewports, zero imports beyond `Box`.
 </Snackbar>
 ```
 
+### Stack — `justifyContent` não é prop em v9, vai no `sx`
+
+Passar `justifyContent` direto no `Stack` dá `No overload matches this call` (o overload pede `component`, e o segundo não conhece a prop). Movido para `sx` compila:
+
+```tsx
+// ❌ No overload matches this call
+<Stack direction="row" spacing={2} justifyContent="center">
+
+// ✅
+<Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
+```
+
+### Server Component passando `component={Link}` para componente MUI
+
+`Button`/`Typography` com `component={Link}` dentro de um arquivo **sem** `"use client"` quebra o build com:
+
+```
+Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server".
+{component: function i, href: ..., variant: ..., sx: ..., children: ...}
+```
+
+**Pitfall que custa tempo:** a mensagem aponta uma rota que não tem nada a ver com o arquivo culpado (o build atribui o erro à página que estava sendo pré-renderizada). Não vá investigar a rota citada — leia o **objeto de props** na mensagem (`component: function` + `href` + `variant` + `sx` = um `Button` com `component={Link}`) e cace o `component={Link}` em arquivo server. Fix: `"use client"` no topo do arquivo, ou trocar por `href` puro.
+
+### Trocar `palette.primary.main` para corrigir contraste — o hex antigo fica espalhado
+
+Mudar `primary.main` no tema conserta só os componentes que usam `color="primary"`. Quem escreveu o hex na mão continua no tom velho, e o resultado é a loja com **dois laranjas** (botão do tema num tom, botão hardcoded no outro) — pior que o contraste original, porque agora parece erro.
+
+Antes de fechar o PR: `grep -rn "#E65100" src --include=*.tsx` (troque pelo hex antigo) e migre **todos** os `backgroundColor`, `borderColor`, `color` e `hover` no mesmo commit. Os que sobrarem devem ser intencionais (superfície grande, ícone decorativo), não esquecidos.
+
+Regra de escolha: o tom escuro vai em **texto e CTA** (precisa de 4,5:1 com branco), o tom claro fica em **superfície grande e ícone** (onde 3:1 basta). Um par que funciona: `main: "#BF360C"` (5,6:1) + `light: "#E65100"` (o antigo, agora só decorativo).
+
 ## Custom Fonts with next/font/google
 
 Use `next/font/google` instead of `<link>` tags for Google Fonts. Next.js optimizes loading, prevents layout shift, and provides CSS variables.
@@ -521,6 +552,13 @@ Instead, use native HTML performance attributes directly:
 - **Version check first**: Run `npm ls @mui/material` before writing theme overrides or Grid usage.
 - **Cart hydration**: Cart reads from `localStorage` on mount. During SSG/SSR, cart is always empty — fine, client hydrates.
 - **Prisma CLI can't read `.env.local`**: Use `.env` instead, or pass env var inline.
+- **`npm run build` que roda seed falha em máquina sem banco**: se o script é `prisma generate && prisma db seed && next build`, o build local morre em `POSTGRES_PRISMA_URL não configurada` antes de compilar qualquer coisa. Isso **não** é erro de código. Para validar compilação (o gate antes do commit), rode `npx next build` direto — o seed é etapa de dados, e o deploy/Vercel tem banco. Não relate "build quebrado" por causa disso.
+- **Preço em pt-BR: nunca `toFixed(2)`**: `toFixed` produz `R$ 849.00` (ponto decimal, sem milhar) — parece loja amadora e aparece em card, PDP, carrinho, checkout e PIX de uma vez. Crie **um** helper e use em todo lugar:
+  ```ts
+  export const formatBRL = (v: number) =>
+    new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v);
+  ```
+  Ao corrigir isso num projeto existente, `grep -rn "toFixed(2)" src` primeiro: são dezenas de ocorrências e todas precisam migrar no mesmo PR, senão a loja fica com dois formatos de preço.
 - **Prisma schema change → TypeScript errors**: After adding/modifying columns in `schema.prisma`, run `npx prisma generate` before `tsc --noEmit` or the build. TypeScript won't see new fields (e.g., `peso`, `altura`) until the client is regenerated. Symptom: `Property 'X' does not exist on type '{ ... }'`. Fix: `npx prisma generate` then retry.
 - **Prisma seed needs `tsx` (or build fails on Vercel)**: When the Prisma config uses `"seed": "tsx prisma/seed.ts"` and you add `npx prisma db seed` to the build command, the seed will fail on Vercel with `spawn tsx ENOENT` unless `tsx` is installed as a devDependency (`npm install -D tsx`). Next.js projects don't ship `tsx` by default — add it explicitly.
 - **JSON→DB seed as build step**: When the site uses JSON files as the canonical data source but Prisma/PostgreSQL as the runtime database (JSON → DB fallback chain), include `npx prisma db seed` in the build command so every deploy syncs JSON changes to the database:
