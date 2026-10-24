@@ -202,6 +202,84 @@ Primary API → Fallback RSS → Mock data chain. Allows development without API
 - `slotProps` API works in v6+ (`componentsProps` in v4/v5).
 - `ToggleButtonGroup`, `Badge`, `Tooltip`, `Chip`, `Slider` — stable API across v6-v9.
 
+## Área admin: autenticar API e páginas (NextAuth v4)
+
+Checar sessão só no cliente **não é proteção**: `useSession` esconde o botão, mas quem chama a API não passa pelo React. Antes de qualquer trabalho de design num admin, meça se ele está aberto:
+
+```bash
+grep -rn "getServerSession\|requireAdmin" src | wc -l   # 0 = API aberta
+ls src/middleware.ts 2>/dev/null || echo "sem middleware"
+curl -s -o /dev/null -w "%{http_code}" https://SEU-SITE/api/admin/produtos   # 200 sem cookie = aberto
+```
+
+Ao verificar em produção use **só GET** e imprima **só o status e a contagem** — a resposta pode conter nome e e-mail de cliente, e isso não deve passar pelo terminal. Nunca teste DELETE/PUT contra produção; valide escrita no build local.
+
+### `withAuth`: `authorized` retornando `false` pula o seu middleware
+
+`withAuth(fn, { callbacks: { authorized } })` só chama `fn` quando `authorized` devolve `true`. Se você devolve `Boolean(token)`, o `withAuth` redireciona **tudo** — inclusive `/api/admin/*` — antes do seu código, e a API responde 307 com HTML de login em vez de 401 JSON (o `fetch` da UI quebra no `.json()`).
+
+```ts
+// ❌ API cai no redirect: my middleware nunca roda
+authorized: ({ token }) => Boolean(token)
+
+// ✅ decide dentro, e a API responde JSON
+authorized: () => true
+```
+
+```ts
+export default withAuth(
+  (req) => {
+    if (req.nextauth.token?.admin) return NextResponse.next();
+    if (req.nextUrl.pathname.startsWith("/api/admin"))
+      return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+    return NextResponse.redirect(new URL("/login", req.url));
+  },
+  { callbacks: { authorized: () => true }, pages: { signIn: "/login" } }
+);
+export const config = { matcher: ["/admin/:path*", "/api/admin/:path*"] };
+```
+
+Middleware é a **segunda** camada: cada handler também precisa do guard (`requireAdmin()`), porque middleware não cobre toda chamada nem sempre é respeitado. Callbacks OAuth de terceiro (`/api/admin/<provedor>/callback`) ficam **fora** do guard — chegam por redirect do provedor, sem sessão.
+
+Receita completa (helper, guard nas rotas, bcrypt com migração de senha em texto puro, CORS): `references/admin-auth-hardening.md`.
+
+### Endpoint de escrita não pode devolver sucesso no `catch`
+
+```ts
+// ❌ a tela anuncia "status alterado" e nada foi gravado
+try {
+  await prisma.pedido.update({ where: { id }, data: { status } });
+  return NextResponse.json({ success: true });
+} catch {
+  return NextResponse.json({ success: true, mock: true });
+}
+
+// ✅ separa "não existe" de "falhou"
+const { count } = await prisma.pedido.updateMany({ where: { id }, data: { status } });
+if (count === 0) return NextResponse.json({ error: "Pedido não encontrado" }, { status: 404 });
+```
+
+`update`/`delete` estouram com `P2025` quando o id não existe, e um `catch` genérico transforma isso em sucesso — o operador deixa de perseguir o pedido achando que resolveu. `updateMany` devolve `count`, então 404 e 500 viram respostas distintas. A mesma regra vale para listagem: falha de banco devolve **503 com mensagem**, nunca um array de exemplo. Pedido ou cliente inventado no painel é pior que tela de erro, porque ninguém desconfia dele.
+
+### Vocabulário de status: quem grava e quem valida têm que ser a MESMA lista
+
+Antes de mexer em tela de pedido, compare o que o **checkout grava** com o que o **admin aceita**:
+
+```bash
+grep -rn 'status:' src/app/api/pedidos          # o que a escrita produz
+grep -rn 'pendente\|pago\|preparando\|enviado' src/app/admin src/app/api/admin
+```
+
+Se o checkout grava `aguardando_pagamento` e o admin só conhece `pendente|pago|preparando|...`, **todo registro real nasce inoperável**: o chip cai no `default` (cinza), nenhum botão de ação renderiza (`PROXIMO[status]` é `undefined`) e o `PATCH` recusa gravar aquele status. A tela parece funcionar — ela só nunca mostra um pedido de verdade.
+
+Fix: um módulo `src/lib/<entidade>-status.ts` como fonte única (`STATUS` como `as const`, `LABEL`, `COR`, `PROXIMO`, ação por status), importado pela API **e** pelas duas telas. Mais um `UPDATE` normalizando os status legados, rodado **antes** do deploy. Nunca deixe duas listas de status convivendo — a de validação e a de renderização divergem na primeira feature nova.
+
+### DELETE de verdade não tem volta — desative
+
+Um `DELETE` que apaga o registro deixa o operador sem caminho de volta quando ele clica no lugar errado (e o diálogo genérico "tem certeza?" não ajuda em nada). Em painel de operação, `delete` → `update({ ativo: false })` e ofereça o **toggle** na própria listagem (`ativo ? <VisibilityOff/> : <Visibility/>`, com `title` dizendo o que acontece). O diálogo deve dizer que o item sai da loja mas continua cadastrado.
+
+Atenção ao par: desativar sem toggle é pior que apagar — vira armadilha de mão única. Ou entrega os dois juntos, ou não mexe.
+
 ## Verificação visual antes de aprovar (gate obrigatório)
 
 O dono **não aprova PR de UI sem ver a tela**: quer captura **nos dois temas** e leitura crítica do resultado — "funciona" não basta, tem que estar legível e correto no claro E no escuro. Faça a revisão ANTES de pedir aprovação e relate o que encontrou (inclusive o que corrigiu por causa dela). Receita completa (chromium headless + CDP + `vision_analyze`, sem login manual) em `references/verificacao-visual-local.md`.
@@ -475,7 +553,7 @@ Instead, use native HTML performance attributes directly:
 
 ## Pitfalls
 
-- **Frontend data source verification (CRITICAL)**: BEFORE changing any data (prices, stock, product info), verify WHERE the frontend reads from. Common trap: admin saves to PostgreSQL but frontend reads from static JSON file → changes don't appear. Always trace the data flow: `Admin/API → Storage → Frontend read`. Fix: ensure frontend reads from the same storage that admin writes to (usually PostgreSQL via API).
+- **Frontend data source verification (CRITICAL)**: BEFORE changing any data (prices, stock, product info), verify WHERE the frontend reads from. Common trap: admin saves to PostgreSQL but frontend reads from static JSON file → changes don't appear. Always trace the data flow: `Admin/API → Storage → Frontend read`. Fix: ensure frontend reads from the same storage that admin writes to (usually PostgreSQL via API). **Nome de função legado mente depois do refactor**: `salvarProdutos()`/`lerProdutos()` podem já estar em Prisma com o comentário `// Antigo: JSON file read/write` ainda no topo. Abra o módulo antes de anunciar "grava em JSON e o site lê do banco" — importe o arquivo e leia o corpo, não julgue pelo nome nem pelo comentário de cabeçalho.
 
 - **Consistência visual entre componentes**: Quando um projeto já tem uma linguagem visual estabelecida (cards com fundo `rgba(255,255,255,0.02)`, borda `divider`, border-radius 3, hover com `borderColor` + `translateY(-2px)`, fonte monospace), **todo novo componente na mesma página deve segui-la**. Misturar estilos diferentes (ex: bolinhas circulares com fundo cinza claro `radial-gradient` num layout escuro/terminal) quebra a coesão visual e o usuário reclama ("destoando do layout que vc padronizou"). Antes de criar um componente, verifique se já existe um padrão no projeto — reutilize cards, papers e `sx` props em vez de inventar um visual novo do zero. Quando o padrão não existe, estabeleça um que seja coerente com o tema (escuro, monospace, bordas sutis, hover com cor primária).
 
@@ -552,13 +630,31 @@ Instead, use native HTML performance attributes directly:
 - **Version check first**: Run `npm ls @mui/material` before writing theme overrides or Grid usage.
 - **Cart hydration**: Cart reads from `localStorage` on mount. During SSG/SSR, cart is always empty — fine, client hydrates.
 - **Prisma CLI can't read `.env.local`**: Use `.env` instead, or pass env var inline.
+- **Servidor local velho responde por um build antigo** — `pkill -f "next start"` **não** mata o processo real (`next-server`), a porta continua ocupada e o `curl` devolve o comportamento de antes da sua mudança: você testa a correção, vê o resultado antigo e conclui o contrário do que está no código. Mate **pela porta**, não pelo nome:
+  ```bash
+  ss -lptn 'sport = :3055'          # pid de quem está na porta
+  kill <pid>
+  npx next build && npx next start -p 3055
+  ```
+  Em dúvida, use uma porta nova a cada rodada. Se o start logar `EADDRINUSE`, quem responde é o velho — resultado inválido.
 - **`npm run build` que roda seed falha em máquina sem banco**: se o script é `prisma generate && prisma db seed && next build`, o build local morre em `POSTGRES_PRISMA_URL não configurada` antes de compilar qualquer coisa. Isso **não** é erro de código. Para validar compilação (o gate antes do commit), rode `npx next build` direto — o seed é etapa de dados, e o deploy/Vercel tem banco. Não relate "build quebrado" por causa disso.
+
+- **Coluna nova no schema + build que roda seed = deploy vermelho até a migration rodar**: o build da Vercel executa `prisma db seed` contra o banco **real**, e o build **não** roda `migrate deploy`. Adicionar um campo em `schema.prisma` e subir o código antes do `ALTER TABLE` faz o seed morrer com `The column \`X\` of relation \`Y\` does not exist in the current database` / `DriverAdapterError: ColumnNotFound` — e o deploy inteiro cai, não só o seed.
+
+  ```bash
+  # sempre nesta ordem
+  psql "$DATABASE_URL" -f prisma/migrations/<nova>/migration.sql   # 1) banco
+  git push                                                          # 2) código
+  ```
+  Escreva a migration idempotente (`ADD COLUMN IF NOT EXISTS`) e com `DEFAULT`, para ser segura de rodar em produção antes do merge. **Não** tente consertar adicionando `prisma migrate deploy` ao build: se as migrations antigas foram aplicadas à mão, o `_prisma_migrations` não tem o registro e o deploy reaplica um `ALTER` já feito. Se o CI ficar vermelho só por isso, o vermelho está certo — avise que falta rodar o SQL em vez de procurar culpado no código.
 - **Preço em pt-BR: nunca `toFixed(2)`**: `toFixed` produz `R$ 849.00` (ponto decimal, sem milhar) — parece loja amadora e aparece em card, PDP, carrinho, checkout e PIX de uma vez. Crie **um** helper e use em todo lugar:
   ```ts
   export const formatBRL = (v: number) =>
     new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v);
   ```
   Ao corrigir isso num projeto existente, `grep -rn "toFixed(2)" src` primeiro: são dezenas de ocorrências e todas precisam migrar no mesmo PR, senão a loja fica com dois formatos de preço.
+- **`src/generated` envenena qualquer grep**: Prisma 7 gera o client em `src/generated/prisma` e o `class.ts` carrega um blob base64 enorme — um `grep -rn "termo" src` devolve milhares de caracteres inúteis e queima contexto. Sempre limite: `grep -rn "termo" src --include=*.ts --include=*.tsx --exclude-dir=generated` (ou `rg -g '!src/generated'`).
+- **Data do GA4 (e de qualquer API Google) vem `20261016` = ANO-MÊS-DIA**: formatar com `slice(4,6)+"/"+slice(6,8)` produz `10/16` — mês/dia americano, e o dono lê como "não é data". Em painel pt-BR: `` `${d.slice(6,8)}/${d.slice(4,6)}` `` e o eixo vira `16/10`. Duas regras que andam juntas: (a) rótulo do vocabulário tem que ser o que a métrica é — `activeUsers` = **Visitantes (pessoas)**, `screenPageViews` = **Page views**, `sessions` = **Sessões**; (b) a janela do gráfico tem que ser a mesma do título — `dateRanges: [{ startDate: "7daysAgo", endDate: "today" }]` devolve **8** pontos, e um card escrito "Analytics (30 dias)" com gráfico de 7 dias faz o número parecer errado. Se `activeUsers` vier 0 com page views > 0, o problema é a propriedade/medição do GA4, não a tela — confira se a tag (`G-XXXXXXX`) está no HTML antes de acusar o código.
 - **Prisma schema change → TypeScript errors**: After adding/modifying columns in `schema.prisma`, run `npx prisma generate` before `tsc --noEmit` or the build. TypeScript won't see new fields (e.g., `peso`, `altura`) until the client is regenerated. Symptom: `Property 'X' does not exist on type '{ ... }'`. Fix: `npx prisma generate` then retry.
 - **Prisma seed needs `tsx` (or build fails on Vercel)**: When the Prisma config uses `"seed": "tsx prisma/seed.ts"` and you add `npx prisma db seed` to the build command, the seed will fail on Vercel with `spawn tsx ENOENT` unless `tsx` is installed as a devDependency (`npm install -D tsx`). Next.js projects don't ship `tsx` by default — add it explicitly.
 - **JSON→DB seed as build step**: When the site uses JSON files as the canonical data source but Prisma/PostgreSQL as the runtime database (JSON → DB fallback chain), include `npx prisma db seed` in the build command so every deploy syncs JSON changes to the database:
@@ -605,6 +701,10 @@ Deploying Next.js from monorepos or subdirectories. Load via `skill_view(name="n
 Three approaches: Dashboard Root Directory (simplest, recommended for single-app subdirs), `vercel-build` script in root `package.json` (monorepo with backend), `vercel.json` buildCommand (code-as-config).
 
 > **Vercel "não builda" / CI morre no install (comum):** se `npm install` local puro falha com `ERESOLVE` (ex. `@mui/styles@5` vs React 18), é isso que mata o build do Vercel antes de começar — Vercel usa `npm install` sem flags. Fix no repo: `.npmrc` com `legacy-peer-deps=true` + `vercel.json` installCommand + GitHub Actions (lint/typecheck/build) como gate. Receita em `references/npm-eresolve-vercel-build-fix.md`.
+
+> **Build passa local e falha na Vercel em `next/font/google`:** erro `next/font/google queries have exactly one entry` ou stack em `[next]/internal/font/google/*.module.css` é fetch da fonte no runner, não código. Leia o log antes de mexer em qualquer coisa (`npx vercel inspect dpl_XXX --logs`); se for isso, `npx vercel redeploy dpl_XXX` resolve. Não "conserte" o arquivo de fonte nem troque `next/font` por `<link>` por causa de um build que já passou local — o próximo deploy verde te dá razão.
+
+> **`vercel --prod` publica a ÁRVORE DE TRABALHO, não a `main`.** O comando sobe o diretório como está — branch atual e arquivos não commitados inclusive. Republicar produção a partir de um branch de feature coloca código não revisado (e mudança de schema) no ar. Antes: `git status --porcelain` vazio **e** `git checkout main && git pull`; só então `npx vercel --prod --yes`. Se o CLI reclamar `Your codebase isn't linked to a project on Vercel`, rode `npx vercel link --yes --scope <time> --project <projeto>` — mas saiba que o link grava `.env.local` com as credenciais de produção: use e apague (`rm .env.local`) se você só precisava do link ou de `vercel env ls`.
 
 Key pitfalls: Vercel GitHub App can silently disconnect (two-step fix: dashboard + github.com/apps/vercel); Root Directory field only appears after connecting Git; Root Directory format must NOT start with `/`; Tailwind CSS v4 must be in `dependencies` not `devDependencies`; `--include=dev` needed for TypeScript types; framework detection runs BEFORE buildCommand.
 
