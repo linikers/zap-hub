@@ -397,6 +397,8 @@ Error: Functions cannot be passed directly to Client Components unless you expli
 
 **Pitfall que custa tempo:** a mensagem aponta uma rota que não tem nada a ver com o arquivo culpado (o build atribui o erro à página que estava sendo pré-renderizada). Não vá investigar a rota citada — leia o **objeto de props** na mensagem (`component: function` + `href` + `variant` + `sx` = um `Button` com `component={Link}`) e cace o `component={Link}` em arquivo server. Fix: `"use client"` no topo do arquivo, ou trocar por `href` puro.
 
+Numa rota **dinâmica** (`export const dynamic = "force-dynamic"`, página que lê params/banco) o mesmo erro **não aparece no `next build` nem no `tsc`**: compila, e a página responde **500 no primeiro request**. Por isso, ao criar rota nova: `curl -s -o /dev/null -w '%{http_code}' <url>` antes de dizer que está pronta — build verde não cobre erro de render.
+
 ### Trocar `palette.primary.main` para corrigir contraste — o hex antigo fica espalhado
 
 Mudar `primary.main` no tema conserta só os componentes que usam `color="primary"`. Quem escreveu o hex na mão continua no tom velho, e o resultado é a loja com **dois laranjas** (botão do tema num tom, botão hardcoded no outro) — pior que o contraste original, porque agora parece erro.
@@ -647,6 +649,8 @@ Instead, use native HTML performance attributes directly:
   git push                                                          # 2) código
   ```
   Escreva a migration idempotente (`ADD COLUMN IF NOT EXISTS`) e com `DEFAULT`, para ser segura de rodar em produção antes do merge. **Não** tente consertar adicionando `prisma migrate deploy` ao build: se as migrations antigas foram aplicadas à mão, o `_prisma_migrations` não tem o registro e o deploy reaplica um `ALTER` já feito. Se o CI ficar vermelho só por isso, o vermelho está certo — avise que falta rodar o SQL em vez de procurar culpado no código.
+- **`notFound()` numa page responde HTTP 200 quando o layout raiz já foi enviado**: com streaming, o `<html>` sai antes da página resolver e o status fica comprometido — o usuário vê a tela de "não encontrada" e o código é 200. Não use `notFound()` como barreira de visibilidade (feature flag/módulo desligado). Para API: `NextResponse.json({...}, {status: 404})`. Para página: `redirect()` para uma rota existente. Verifique com `curl -o /dev/null -w '%{http_code}'` **e** procurando a UI no HTML — status sozinho mente nos dois sentidos.
+- **Estado lido do banco em Server Component congela no prerender**: sem `unstable_noStore()` (de `next/cache`) dentro do leitor, ou `export const dynamic = "force-dynamic"` na rota, o Next serve o valor do build — uma chave liga/desliga no painel "não funciona" em produção mesmo com a API já respondendo diferente. Valide com `next build && next start`: `next dev` compila sob demanda e esconde o congelamento.
 - **Preço em pt-BR: nunca `toFixed(2)`**: `toFixed` produz `R$ 849.00` (ponto decimal, sem milhar) — parece loja amadora e aparece em card, PDP, carrinho, checkout e PIX de uma vez. Crie **um** helper e use em todo lugar:
   ```ts
   export const formatBRL = (v: number) =>
