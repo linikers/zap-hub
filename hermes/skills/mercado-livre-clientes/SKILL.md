@@ -339,6 +339,8 @@ for attr in item.get('attributes', []):
 > ⚠️ **Priorizar atributos SEM "vendor" no nome** — "Altura da embalagem do vendor"
 > é a medida que o vendedor cadastrou manualmente; "Altura da embalagem" é a
 > medida padrão do catálogo ML. Usar a do catálogo quando disponível.
+>
+> **Prefira os IDs dos atributos** (`PACKAGE_WEIGHT`, `PACKAGE_HEIGHT`, `PACKAGE_WIDTH`, `PACKAGE_LENGTH`): o nome em português muda com o idioma e com o catálogo, o id não. Receita de exportação do catálogo inteiro — paginação, multiget, descrição em chamada separada, dedupe por `SELLER_SKU` e **o que a API não entrega (NCM/CEST/CFOP/CST/origem)** — em `references/catalogo-completo-export.md`.
 
 Sem a API, os dados são manuais (você informa vendas, produtos, etc.)
 
