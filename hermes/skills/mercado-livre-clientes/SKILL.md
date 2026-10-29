@@ -300,6 +300,28 @@ novas instâncias ou entender o esquema de cada conexão ativa.
 > dados do ML num dashboard Next.js (portfolio). Padrão: API route →
 > lê dados.json → transforma produtos em campanhas → renderiza tabela MUI.
 
+### 🔎 "Tem no Mercado Livre?" = a conta do vendedor, não o marketplace
+
+No contexto da loja do dono, "conferir se a peça está no Mercado Livre" significa **os anúncios dele** — não a busca pública. Responder com preços do marketplace em geral erra o alvo: a pergunta é "eu já estou vendendo isso?", e a resposta está na conta.
+
+- **Vá direto para a API do vendedor.** A listagem pública (`lista.mercadolivre.com.br`) cai em `account-verification` mesmo em navegador logado — tentar por lá queima tempo e termina em "não consegui".
+- **Token:** o válido está em `/root/hermes-marketing-orchestrator/.env` (`MERCADO_LIVRE_ACCESS_TOKEN`); a cópia no `Environment=` do `marketing-os-api.service` pode estar vencida e devolver **401**. Leia o arquivo em Python, sem imprimir o valor. Antes de usar, confirme a conta com `GET /users/me` (tem que devolver o seller id esperado).
+- **Enumerar tudo, depois filtrar em código** (não confie em busca por texto na API):
+
+```python
+# /users/<seller_id>/items/search?limit=100&offset=N até paging.total
+# metadados em lote: /items?ids=MLB1,MLB2,…&attributes=id,title,price,available_quantity,status,permalink
+# detalhe por item: /items/<id> → sold_quantity, date_created, seller_custom_field
+import re
+achados = [x for x in itens if re.search(r"rf8bt|rf8|8 canais|hki", x["title"], re.I)]
+```
+
+  Lotes de 20 no multiget (acima disso a URL estoura e o `code` volta 400). **O SKU do anúncio está em `attributes[SELLER_SKU].value_name`, não em `seller_custom_field`** — esse campo volta nulo em **todos** os itens, e olhar só ele leva a concluir (errado) que não existe junção com o site. Peça `attributes=id,title,price,available_quantity,status,sold_quantity,permalink,attributes` e use o `SELLER_SKU` como chave: é o mesmo código do catálogo do site (batimento típico ~96%). Quando o título do site difere muito do anúncio, o SKU é a única prova de identidade — sem ele, casar por nome acerta pouco e cria duplicata.
+
+- **Duplicata é achado, não erro de busca:** dois anúncios ativos com o **mesmo título** e preços diferentes (ex.: R$ 589 e R$ 599) competem entre si. Relate qual vende mais (`sold_quantity`) e deixe a decisão com o dono — pausar/encerrar anúncio é ação de venda.
+- **Cruze com o catálogo do site pelo título exato:** produto do site que é o mesmo item costuma estar com nome **sem** o código do fabricante ("Central Suspensão Ar 8 Canais…" × "Gerenciador … Rf8bt … Original HKI"), e o anúncio mais antigo/genérico é o que o site importou. Isso explica "não tem no site" que na verdade é "tem com outro nome".
+- **Não rode `scripts/refresh-ml-token.py` no meio de outra tarefa:** ele rotaciona o refresh token e reinicia o serviço. Rode somente com aval do dono.
+
 ### 📦 Dados de Produto: Peso e Medidas (via API)
 
 A API do ML **NÃO retorna** `weight` ou `dimensions` como campos top-level.

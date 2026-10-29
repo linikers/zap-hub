@@ -399,6 +399,68 @@ Error: Functions cannot be passed directly to Client Components unless you expli
 
 Numa rota **dinâmica** (`export const dynamic = "force-dynamic"`, página que lê params/banco) o mesmo erro **não aparece no `next build` nem no `tsc`**: compila, e a página responde **500 no primeiro request**. Por isso, ao criar rota nova: `curl -s -o /dev/null -w '%{http_code}' <url>` antes de dizer que está pronta — build verde não cobre erro de render.
 
+### Botão de link reutilizável: espalhar `ButtonProps` quebra o tipo (TS2769)
+
+Um componente tipo `<BotaoWhatsApp mensagem sx variant>` que renderiza `<Button component={NextLink} href=...>` e repassa `{...props}` tipado como `ButtonProps` não compila:
+
+```
+No overload matches this call. Overload 2 ... Types of property 'ref' are incompatible.
+Type 'Ref<HTMLButtonElement> | undefined' is not assignable to type 'Ref<HTMLAnchorElement> | undefined'.
+```
+
+`ButtonProps` carrega `ref: Ref<HTMLButtonElement>`; o overload de `<a>` espera `HTMLAnchorElement`. Trocar `component="a"` por `component={NextLink}` não resolve — a origem é o spread. **Fix:** aceite só as props visuais e passe o resto explicitamente:
+
+```tsx
+type Props = { children: ReactNode; mensagem?: string; variant?: ButtonProps["variant"]; sx?: ButtonProps["sx"] };
+<Button component={NextLink} href={url} target="_blank" rel="noopener noreferrer" variant={variant} sx={sx} startIcon={<WhatsApp />}>
+```
+
+Não force com `as unknown as` — o cast esconde que o `ref` do botão não é do `<a>`.
+
+### Valor do banco em componente de cliente: provider no layout, lib sem Prisma
+
+Para telefone/endereço/nome configurarem o site inteiro sem cada componente buscar:
+
+1. **lib pura** (`empresa-contato.ts`): tipos, defaults, formatadores (`formatarTelefone`, `linkWhatsApp`) — sem importar nada que puxe Prisma, senão o client do banco entra no bundle do navegador;
+2. leitura no **layout raiz** (server): `const contato = await lerContatoEmpresa()` → `<EmpresaProvider valor={contato}>`;
+3. componentes de cliente usam `useEmpresa()`; **página de servidor** que precisa do valor renderiza um componente de cliente pequeno (um botão de WhatsApp), porque server component não lê contexto — evita passar o dado por prop em N páginas.
+
+Efeito colateral a declarar: layout que consulta banco torna as páginas dinâmicas (perde o estático). É o custo de "salvar no painel e ver no site na hora".
+
+### Cache com tag quando o dado aparece em TODA página (Next 16)
+
+Se o layout raiz precisa de uma linha de configuração (nome, telefone, tema) em todas as rotas, `force-dynamic` puro faz uma consulta por visita. Envolva a leitura em `unstable_cache` e invalide pelo save:
+
+```ts
+// src/lib/config.ts (server)
+export const TAG = "config";
+export const lerConfigCache = unstable_cache(
+  async () => montar(await lerDoBanco()),
+  ["config"],
+  { tags: [TAG], revalidate: 60 * 60 * 24 }   // teto de segurança, não a política
+);
+export function invalidarConfig() {
+  revalidateTag(TAG, { expire: 0 });          // ver gotcha abaixo
+}
+```
+
+**API do Next 16 (o `tsc` quebra na forma antiga):**
+
+| Chamada | Efeito |
+|---|---|
+| `revalidateTag(tag)` | **deprecada** — o tipo exige 2 argumentos |
+| `revalidateTag(tag, "max")` | stale-while-revalidate: a próxima visita ainda pode ver o valor velho |
+| `revalidateTag(tag, { expire: 0 })` | descarta na hora — use em Route Handler quando "salvar tem que valer já" |
+| `updateTag(tag)` | só funciona em Server Action |
+
+`unstable_cache` continua válido em projeto **sem** `cacheComponents` no `next.config` (confira antes de migrar para `use cache`); a função cacheada não pode ler `cookies()`/`headers()`/params.
+
+Regras que evitam o bug clássico:
+
+- **Invalide em TODO escritor da tabela.** Duas telas de admin que gravam na mesma linha (identidade × fiscal) precisam chamar a invalidação; esquecer uma deixa a tela salvando e o site no valor antigo.
+- **Leitura que precisa do valor exato não passa pelo cache** — geração de PDF, cálculo fiscal e o próprio GET do painel chamam a função crua.
+- **Prove a cache pela ordem dos fatos:** carregue a página (aquece), altere **direto no banco** e recarregue → tem que continuar o antigo (senão não há cache); salve pela API e recarregue → tem que aparecer o novo (senão falta invalidação). Teste em `next build && next start`; `next dev` mascara cache.
+
 ### Trocar `palette.primary.main` para corrigir contraste — o hex antigo fica espalhado
 
 Mudar `primary.main` no tema conserta só os componentes que usam `color="primary"`. Quem escreveu o hex na mão continua no tom velho, e o resultado é a loja com **dois laranjas** (botão do tema num tom, botão hardcoded no outro) — pior que o contraste original, porque agora parece erro.
