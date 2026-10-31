@@ -774,6 +774,10 @@ Serviços: `NFeAutorizacao4`, `NFeRetAutorizacao4`, `NFeConsultaProtocolo4`, `NF
 
 **Referência de implementação funcional**: `linikers/nfe-brasil`, `mcp-server/src/nfe_brasil/nfe/emissao/` (PR #10) — módulo com testes validando XML contra o XSD oficial e assinatura com cadeia de confiança.
 
+**Esse repositório tem dois clones e eles divergem**: `/opt/nfe-brasil` é o **deploy** (código bom, serviços no ar) e `/root/nfe-brasil` é um clone que pode estar commits atrás. Antes de dizer que o emissor "não emite" ou "não tem" um recurso, `git fetch` e compare com `origin/main` e com o `/opt` — clone velho já produziu diagnóstico errado. E `git status` antes de qualquer `git reset --hard`: arquivo nunca commitado não volta.
+
+Contrato completo para ligar uma loja (e-commerce) a este emissor — pull autenticado por chave, `helpers.py`, worker fora do serverless e os campos que a loja decide: `references/site-emissor-worker.md`.
+
 ### Receber o certificado do cliente sem corrompê-lo
 
 `.pfx` é binário: **nunca trafegue como texto**. Sintoma de arquivo corrompido: `Could not deserialize PKCS12 data` mesmo com a senha certa. Diagnóstico definitivo — contar os valores de byte:
