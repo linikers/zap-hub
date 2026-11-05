@@ -10,7 +10,7 @@ Taiff stick: owner_hash=token assinado (não id); access/revoke/unlink/transfer/
 §
 watchdog a71d019b5232 avisa WhatsApp). Conversao: acao 'Contato' (page-load) mede linikers.cloud/ir/whatsapp.
 §
-Dogama: ~2.1k prods sem API, coleta via preview, cron 6h; creds config/.
+Dogama EXCLUÍDO 04/11/26. Shopee mantido: catálogo congelado, SEM automação; compra só pelo preço real Shopee.
 §
 CJ Dropshipping: token config/cj-credentials.json; cron 15d.
 §
@@ -19,8 +19,6 @@ gh CLI: `gh pr edit` falha sem scope read:org → usar REST `gh api -X PATCH rep
 Taiff admin: ADMIN só via create-admin.ts (register cria EXTERNAL); dbPassword RDS prod só via secrets do deploy.
 §
 Taiff: deploy roda migration sozinho (helm pre-upgrade) → merge na main aplica em prod. Swagger prod = runtime src/http/**. PG local taiff-pg-tmp:5434.
-§
-Fiverr: br.fiverr.com/linikers; copy/capas em /root/fiverr/.
 §
 Comunicacao: sem jargao; mostrar ONDE esta a falha antes do fix; veredito pedido ('sim ou nao') = responder a palavra primeiro; abrir site/QR no pane pra ele logar.
 §
