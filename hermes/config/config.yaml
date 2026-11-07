@@ -676,3 +676,6 @@ telemetry:
     enabled: false
     send: false
     offer_version: 2
+image_gen:
+  provider: fal
+  model: fal-ai/flux-2-pro
