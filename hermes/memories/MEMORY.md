@@ -1,6 +1,6 @@
 User: direto pt-BR, admite erro, prático, solução simples. Resumo tabular 🔴🟡🟢. Análise arquitetural antes de grandes mudanças. Build+teste local OBRIGATÓRIO antes de push. Branch→PR→aprova→merge. Oferecer treinamento/config completa depois de implementar. Quer estado real do projeto (oq funciona/mock/falta).
 §
-catalogo: 5.581 prods (3.040 importados). Compra SO pelo preco real Shopee: lucro = mercado x 0,80 - custo; mercado <= custo = NAO COMPRAR. Lista diversificada (max 2 por tipo).
+catalogo: 5.581 prods. Compra SO pelo preco real Shopee: lucro = mercado x0,80 - custo; mercado<=custo = NAO COMPRAR; max 2 por tipo.
 §
 ML: ACCESS_TOKEN no systemd + self-healing 401.
 §
@@ -14,7 +14,7 @@ Dogama EXCLUÍDO 04/11/26. Shopee mantido: catálogo congelado, SEM automação;
 §
 CJ Dropshipping: token config/cj-credentials.json; cron 15d.
 §
-gh CLI: `gh pr edit` falha sem scope read:org → usar REST `gh api -X PATCH repos/O/R/pulls/N`.
+gh pr edit falha sem read:org → REST gh api PATCH pulls/N.
 §
 Taiff admin: ADMIN só via create-admin.ts (register cria EXTERNAL); dbPassword RDS prod só via secrets do deploy.
 §
@@ -33,3 +33,5 @@ Nunca usar 'hermes' em nomes em contas externas dele (tokens, projetos, apps).
 PR de UI: quer analise visual ANTES de aprovar (capturas nos 2 temas + leitura critica do resultado); nao aprova sem ver a tela.
 §
 Terminal redige segredo na saida: nao julgar chave por ela (conferir no diff antes de mexer em prod).
+§
+Fotos: API = fal.ai (FAL_KEY); flux-2-pro bloqueia foto de pessoa; usar nano-banana-pro + hy-wu-edit.
