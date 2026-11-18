@@ -803,6 +803,26 @@ Um PKCS#12 válido **sempre** tem bytes `0x00` (centenas). Zero NUL = o arquivo 
 
 `nginx.conf` inclui `sites-enabled/*` **sem filtrar extensão**. Salvar `marketing.bak` ao lado do vhost faz o nginx carregar duas vezes e abortar com `a duplicate default server for 0.0.0.0:80`. Guarde backups em `/etc/nginx/backups/` e sempre rode `nginx -t` **antes** do `reload`.
 
+## Reforma Tributária do Consumo (RTC) — o que muda na emissão
+
+Os três repositórios oficiais (github.com/ReceitaFederal, MIT, out/2026) são: `calculadora-rtc-regime-regular` (motor CBS/IBS/IS + tabelas CST/cClassTrib/NCM/NBS/alíquotas, Java 21 + SQLite, 61 migrações Flyway), `calculadora-rtc-simples-nacional` (CRT 1/2/4, porta 8082) e `calculadora-rtc-gerador-danfse` (Go, DANFSe de NFS-e em PDF, NT 008). Nenhum publica binário no GitHub: a distribuição prática é o pacote offline `calculadora.zip` do portal consumo.tributos.gov.br (Docker/WSL/JAR + `calculadora/db` já populado).
+
+**Datas (fonte: NT 2025.002 v1.53, NT 2026.005, Atos Conjuntos RFB/CGIBS 4/2026 e 7/2026):**
+
+| Data | O que acontece |
+|---|---|
+| 01/07/2026 | Homologação: IBS/CBS obrigatório para CRT 3 |
+| 03/08/2026 | NT 2025.002 v1.51 suspende a data fixa de obrigatoriedade **em produção** (regime normal) — vira "implementação futura" |
+| 01/10/2026 | NFS-e nacional: IBS/CBS obrigatório para serviços em geral (Ato 4/2026) |
+| 16/11/2026 | Produção: NT 2026.005 (campos do Simples), 2026.007 (emitente sem IE), 2026.008 (valor líquido) |
+| 01/12/2026 | NF-e obrigatória para contribuinte exclusivo de IBS/CBS sem inscrição estadual |
+| 01/01/2027 | Simples Nacional (CRT 1/2) obrigado a emitir DF-e com IBS/CBS; CBS plena; IS começa |
+| 01/01/2027 e 01/03/2027 | NFS-e: bens imateriais/locações e depois plataformas/TI (Ato 7/2026) |
+
+**Campos novos:** `IBSCBS` por item (CST, cClassTrib, gIBSCBS → gIBSUF/gIBSMun/gCBS, gRed), `IS`, `ide/cIndOp` + `cMunFGIBS`, `total/IBSCBSTot` + `ISTot`; NT 2026.005 acrescenta `tpRegimeIBSCBS` (C21a, **emitente**), `cAtivSN` (I17d, **item**, 01/02/03/04/90) e `gTribSN` (UB115a no item com pIBSSN/vIBSSN/pCBSSN/vCBSSN, W59h nos totais). **MEI (CRT 4) não informa o grupo IBSCBS.** RV 1275/1276/1277/1284 rejeitam total ausente/indevido/divergente.
+
+**Armadilhas verificadas:** `nfelib` 3.2.0 e 3.3.0 já trazem `TtribNfe` (IBSCBS), `Tis` e `IBSCBSTot`, mas **nenhuma** tem os campos da NT 2026.005 — e o XSD embutido no wheel (`leiauteNFe_v4.00.xsd`) não conhece `cAtivSN`/`TTribSN`, então validar XML do Simples contra ele falha. Baixe o XSD do pacote oficial da NT. O repo `calculadora-rtc-simples-nacional` **não** tem a pasta `flyway` (0 arquivos .sql): não sobe pelo código, só pelo pacote offline. E a calculadora do Simples **não** calcula alíquota efetiva (RBT12 é do PGDAS-D; integração só na Release 16).
+
 ## Certificado Digital (A1 / A3)
 
 A comunicação com a SEFAZ exige certificado digital ICP-Brasil.

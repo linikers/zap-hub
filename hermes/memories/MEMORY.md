@@ -8,15 +8,15 @@ HBS (deltasge): plano/analise ANTES de alterar; testa em outra maquina.
 §
 Taiff stick: owner_hash=token assinado (não id); access/revoke/unlink/transfer/lock prontos; ble lock 0xA0-0xA5; expira 24h.
 §
-watchdog a71d019b5232 avisa WhatsApp). Conversao: acao 'Contato' (page-load) mede linikers.cloud/ir/whatsapp.
+watchdog a71d019b5232 avisa WhatsApp; conversão 'Contato' (page-load) mede linikers.cloud/ir/whatsapp.
 §
-Dogama EXCLUÍDO 04/11/26. Shopee mantido: catálogo congelado, SEM automação; compra só pelo preço real Shopee.
+Dogama excluído 04/11/26. Shopee: catálogo congelado, sem automação; compra só preço real.
 §
 CJ Dropshipping: token config/cj-credentials.json; cron 15d.
 §
 gh pr edit falha sem read:org → REST gh api PATCH pulls/N.
 §
-Taiff admin: ADMIN só via create-admin.ts (register cria EXTERNAL); dbPassword RDS prod só via secrets do deploy.
+Taiff admin: ADMIN só via create-admin.ts; dbPassword RDS só via secrets do deploy.
 §
 Taiff: deploy roda migration sozinho (helm pre-upgrade) → merge na main aplica em prod. Swagger prod = runtime src/http/**. PG local taiff-pg-tmp:5434.
 §
@@ -24,7 +24,7 @@ Comunicacao: sem jargao; mostrar ONDE esta a falha antes do fix; veredito pedido
 §
 Entregar arquivo = MEDIA:/caminho em MAIÚSCULO ("Media:" não vira card); ele baixa pelo chat, não busca em /root.
 §
-Desligados 18/09/26 (RAM): NF-e (/opt/nfe-brasil; religar: compose start) e Rocketstar.
+Desligados 18/09/26 (RAM): NF-e (/opt/nfe-brasil; compose start) e Rocketstar.
 §
 Trabalha em lotes com pausa; codigo novo vai no PR ja aberto (nao abrir PR novo).
 §
@@ -35,3 +35,5 @@ PR de UI: quer analise visual ANTES de aprovar (capturas nos 2 temas + leitura c
 Terminal redige segredo na saida: nao julgar chave por ela (conferir no diff antes de mexer em prod).
 §
 Fotos: API = fal.ai (FAL_KEY); flux-2-pro bloqueia foto de pessoa; usar nano-banana-pro + hy-wu-edit.
+§
+Nada criado/alterado na org deltasge; projetos em github.com/linikers.
