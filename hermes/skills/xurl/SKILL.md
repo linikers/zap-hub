@@ -187,6 +187,19 @@ xurl search "from:elonmusk" -n 20
 xurl search "#buildinpublic lang:en" -n 15
 ```
 
+#### Reading a post with zero API credit
+
+With the credit balance empty, reads fail too (`"type":"https://api.x.com/2/problems/credits-depleted"`, HTTP 402). Two paths cost nothing:
+
+- `web_extract` on the post URL (`https://x.com/<user>/status/<id>`) — the server-rendered page returns the post body, the first replies of the thread and the engagement counts. Enough to read and judge a post, and it surfaces labels like "Paid partnership".
+- The logged-in preview pane (see the `CreditsDepleted` row in Troubleshooting).
+
+Resolve `t.co` short links before fetching, to learn the real destination and any referral/affiliate parameter:
+
+```bash
+curl -sIL "https://t.co/XXXX" -o /dev/null -w '%{url_effective}\n'
+```
+
 ### Users, Timeline, Mentions
 
 ```bash
@@ -393,7 +406,7 @@ xurl --app staging /2/users/me             # one-off against staging
 | `UsernameNotFound` or 403 on `/2/users/me` right after OAuth | X not returning username reliably from `/2/users/me` | Re-run `xurl auth oauth2 --app my-app YOUR_USERNAME` (xurl v1.1.0+) to pass the handle explicitly |
 | 401 on every request | Token expired or wrong default app | Check `xurl auth status` — verify `▸` points to an app with oauth2 tokens |
 | `client-forbidden` / `client-not-enrolled` | X platform enrollment issue | Dashboard → Apps → Manage → Move to "Pay-per-use" package → Production environment |
-| `CreditsDepleted` | $0 balance on X API | Buy credits (min $5) in Developer Console → Billing. Affects ANY write operation (post, media upload, profile update) via the API. Read operations (whoami, search, timeline) may still work on free tier. Workaround verificado: com a conta logada no preview pane do desktop (desktop_preview + drive_preview), postar e responder FUNCIONA — digitar no composer (data-testid=tweetTextarea_0) e clicar em data-testid=tweetButton publica de verdade (confirmado pelo toast "Seu post foi enviado" + post no perfil). Leitura também: a página do perfil/busca no browser logado mostra textos e métricas sem gastar crédito. Alternative: use Zernio (zernio.com) which handles X API pass-through billing at $0.015/post — but still needs a card on file. |
+| `CreditsDepleted` | $0 balance on X API | Buy credits (min $5) in Developer Console → Billing. Affects ANY write operation (post, media upload, profile update) via the API. Read operations (whoami, search, timeline) also return 402 once the balance is empty — use the zero-credit read path in "Reading & Search". Workaround verificado: com a conta logada no preview pane do desktop (desktop_preview + drive_preview), postar e responder FUNCIONA — digitar no composer (data-testid=tweetTextarea_0) e clicar em data-testid=tweetButton publica de verdade (confirmado pelo toast "Seu post foi enviado" + post no perfil). Leitura também: a página do perfil/busca no browser logado mostra textos e métricas sem gastar crédito. Alternative: use Zernio (zernio.com) which handles X API pass-through billing at $0.015/post — but still needs a card on file. |
 | `media processing failed` on image upload | Default category is `amplify_video` | Add `--category tweet_image --media-type image/png` |
 | Token expirado (`expiration_time` no passado) e sem browser | Não dá pra rodar `xurl auth oauth2` em servidor headless | Renovar via refresh_token grant headless — ver `references/token-refresh-headless.md` (funciona, HTTP 200) |
 | Two "Client Secret" values in X dashboard | UI bug — first is actually Client ID | Confirm on the "Keys and tokens" page; ID ends in `MTpjaQ` |
